@@ -1,7 +1,7 @@
-import Footer from "components/Footer/Footer";
-import Header from "components/Header/Header";
 import React, { Fragment, useEffect } from "react";
 import { Route } from "react-router-dom";
+import Footer from "./Layout/Footer/Footer";
+import Header from "./Layout/Header/Header";
 
 function HomeTemplate(props) {
   // path, exact, Component
