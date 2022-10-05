@@ -35,12 +35,6 @@ function Header() {
                 <NavLink to="/profile">
                   <NavDropdown.Item>Profile</NavDropdown.Item>
                 </NavLink>
-                <NavLink to="/createNewGig">
-                  <NavDropdown.Item>Create New Gig</NavDropdown.Item>
-                </NavLink>
-                <NavLink to="/myGigs">
-                  <NavDropdown.Item>My Gigs</NavDropdown.Item>
-                </NavLink>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
                   onClick={() => {
