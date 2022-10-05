@@ -1,0 +1,101 @@
+#footer {
+  a,
+  li,
+  ul {
+    text-decoration: none;
+    list-style: none;
+  }
+  border-top: 1px solid #e4e5e7;
+  background-color: #fff;
+  position: relative;
+  .footer-wrapper {
+    padding-bottom: 24px;
+    padding-top: 64px;
+    .footer-collapsibles {
+      margin-bottom: 8px;
+      //   &::after {
+      //     background-color: #e4e5e7;
+      //     content: "";
+      //     height: 1px;
+      //     margin: 0 6px;
+      //     width: 100%;
+      //   }
+    }
+    .bottom {
+      color: #74767e;
+      fill: #74767e;
+      justify-content: center;
+      align-items: center;
+      .left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .fiverr-logo-footer {
+          svg {
+            height: 23px;
+            width: 77px;
+          }
+        }
+        .copyright {
+            display: block;
+          color: #b5b6ba;
+          font-size: 14px;
+          margin-bottom: 0;
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .social {
+          li {
+            display: block;
+            span {
+                display: inline-block;
+              &:hover {
+                background-color: #efeff0;
+                border-radius: 50%;
+                margin: -8px;
+                padding: 8px;
+              }
+            }
+          }
+        }
+        .settings-button {
+          .btn-trigger {
+            color: #74767e;
+            font-weight: 600;
+            padding: 8px 12px;
+            align-items: center;
+            background: none;
+            border: none;
+            font-size: 14px;
+            line-height: 21px;
+            margin-right: 3px;
+            &:hover {
+              background-color: #f5f5f5;
+              border-radius: 54px;
+              color: #404145;
+            }
+          }
+          .btn-accessibility {
+            background: none;
+            border: none;
+            padding-left: 8px;
+            svg {
+              &:hover {
+                fill: #404145;
+                .circle-wrapper {
+                  stroke: #efeff0;
+                  fill: #efeff0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
