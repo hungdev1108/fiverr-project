@@ -26,7 +26,7 @@ function Footer() {
           <div className="right">
             <ul className="social d-flex flex-row mr-5 mb-0">
               <li>
-                <span className="">
+                <span>
                   <svg
                     fill="#7a7d85"
                     width="20"
@@ -39,7 +39,7 @@ function Footer() {
                 </span>
               </li>
               <li>
-                <span className="">
+                <span>
                   <svg
                     fill="#7a7d85"
                     width="20"
@@ -52,7 +52,7 @@ function Footer() {
                 </span>
               </li>
               <li>
-                <span className="">
+                <span>
                   <svg
                     fill="#7a7d85"
                     width="21"
@@ -65,7 +65,7 @@ function Footer() {
                 </span>
               </li>
               <li>
-                <span className="">
+                <span>
                   <svg
                     fill="#7a7d85"
                     width="20"
