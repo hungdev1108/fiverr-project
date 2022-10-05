@@ -1,5 +1,28 @@
-#header {
-  color: #000;
-  font-size: 50px;
-  background: orangered;
+.header {
+  .header__top {
+    .userLogin {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .nav-item.dropdown {
+    #dropdown-account {
+      color: #1cbd72;
+      &::after {
+        display: none;
+      }
+    }
+    .dropdown-menu {
+      a {
+        text-decoration: none;
+      }
+      right: 0;
+    }
+  }
+  .navbar-light .navbar-nav .nav-link.active {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 0.7);
+  }
 }
