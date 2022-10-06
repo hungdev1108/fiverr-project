@@ -1,26 +1,39 @@
-import React from "react";
+import { logoSvg } from "assets/images/svgImage";
+import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import "./Header.scss";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { logoSvg } from "assets/images/svgImage";
-import { NavDropdown } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import "./Header.scss";
 
 function Header() {
   return (
-    <header className="header">
+    <header id="header">
       <Navbar expand="xl" variant="light">
         <Container className="header__top">
-          <Navbar.Brand>{logoSvg}</Navbar.Brand>
+          <Navbar.Brand className="header__top--logo">{logoSvg}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto align-items-lg-center ">
+            <Form className="d-flex search">
+              <Form.Control
+                type="search"
+                placeholder="What service are you looking today?"
+                className="inputSearch me-2"
+                aria-label="Search"
+              />
+              <Button className="btnSearch">
+                <i className="fas fa-search"></i>
+              </Button>
+            </Form>
+            <Nav className="ml-auto align-items-lg-center">
               <Nav.Link href="#">Fiverr Business</Nav.Link>
               <Nav.Link href="#">Explore</Nav.Link>
+              <Nav.Link href="#">English</Nav.Link>
               <Nav.Link href="#">Become a Seller</Nav.Link>
-              <NavDropdown
+              <Nav.Link href="#">Sign in</Nav.Link>
+              <Nav.Link href="#">
+                <button className="btnJoin">Join</button>
+              </Nav.Link>
+              {/* <NavDropdown
                 title=<span className="userLogin">
                   <UserOutlined className="mr-1" />
                   Hi! Admin
@@ -44,7 +57,7 @@ function Header() {
                 >
                   Logout
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -21,7 +21,7 @@ function App() {
         <Switch>
           {/* Components */}
           <HomeTemplate path="/home" exact Component={Home} />
-          <HomeTemplate path="/workDetail/:id" exact Component={JobDetails} />
+          <HomeTemplate path="/jobDetail/:id" exact Component={JobDetails} />
 
           <AuthRoute path="/signin" exact component={SignIn} redirectPath="/" />
           <AuthRoute path="/signup" exact component={SignUp} redirectPath="/" />
