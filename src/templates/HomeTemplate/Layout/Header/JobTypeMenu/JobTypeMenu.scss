@@ -1,0 +1,23 @@
+#mainJob {
+  .main__job--container {
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+  }
+  .main__job--content {
+    display: flex;
+    justify-content: flex-start;
+    div {
+      text-align: center;
+      a {
+        font-weight: 600;
+        padding: 0 1.5rem;
+        text-decoration: none;
+        text-align: center;
+        color: #7a7d85;
+        &:hover {
+          color: #1dbf73;
+        }
+      }
+    }
+  }
+}
