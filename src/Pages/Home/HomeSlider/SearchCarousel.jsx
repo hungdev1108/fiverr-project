@@ -1,9 +1,9 @@
-import { history } from "App";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function SearchCarousel(props) {
-  console.log(history);
+  const history = useHistory()
   const [valueSearch, setValueSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ function SearchCarousel(props) {
         <Button variant="outline-light">Website Design</Button>
         <Button variant="outline-light">WordPress</Button>
         <Button variant="outline-light">Logo Design</Button>
-        <Button variant="outline-light">NFT Art</Button>
+        <Button variant="outline-light">Video Editing</Button>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import HomeSlider from "./HomeSlider/HomeSlider";
 import "./Home.scss";
+import PopularService from "components/PopularService/PopularService";
 
 function Home() {
   return (
@@ -43,6 +44,8 @@ function Home() {
           </ul>
         </div>
       </div>
+
+      <PopularService/>
     </div>
   );
 }
