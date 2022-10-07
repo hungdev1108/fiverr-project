@@ -12,7 +12,7 @@ function HomeSlider() {
           <div className="position-absolute search_input">
             <SearchCarousel />
           </div>
-          <div className="d-none d-lg-block">
+          <div className=" banner d-lg-block">
             <Carousel fade controls={false} indicators={false}>
               {imageBanner?.map((img) => (
                 <Carousel.Item key={img.id}>

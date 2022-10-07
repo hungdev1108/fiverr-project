@@ -10,6 +10,7 @@ function Home() {
   return (
     <div className="Home">
       <HomeSlider />
+      
       <div className="trusted-by container-fluid">
         <div className="container d-flex justify-content-center align-items-center">
           <span>Trusted by:</span>

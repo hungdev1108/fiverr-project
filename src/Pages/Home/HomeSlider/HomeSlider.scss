@@ -1,5 +1,6 @@
 .HomeSlider {
   min-height: 400px;
+  background-color: #023a15;
   .name {
     right: 4%;
   }
@@ -41,5 +42,26 @@
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .search_input {
+    right: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner{
+    display: none;
+  }
+  .popular{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .title-search{
+    font-size: 25px;
   }
 }

@@ -10,7 +10,6 @@
     align-items: center;
     .testimonial-video {
       width: 40%;
-      min-width: 250px;
       cursor: pointer;
       .video-modal {
         .modal-image {
@@ -48,6 +47,21 @@
         line-height: 44px;
         color: #003912;
         font-weight: 400;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .testimonials {
+    .testimonial {
+      flex-direction: column;
+
+      .testimonial-video {
+        width: 100%;
+      }
+      .testimonial-content {
+        width: 100%;
       }
     }
   }
