@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.scss";
-import MainJob from "./MainJob/MainJob";
+import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
 
 function Header() {
   return (
@@ -30,8 +30,8 @@ function Header() {
               <Nav.Link href="#">Explore</Nav.Link>
               <Nav.Link href="#">English</Nav.Link>
               <Nav.Link href="#">Become a Seller</Nav.Link>
-              <Nav.Link href="#">Sign in</Nav.Link>
-              <Nav.Link href="#">
+              <Nav.Link href="/signin">Sign in</Nav.Link>
+              <Nav.Link href="/signup">
                 <button className="btnJoin">Join</button>
               </Nav.Link>
               {/* <NavDropdown
@@ -64,7 +64,7 @@ function Header() {
         </Container>
       </Navbar>
       <div className="container">
-        <MainJob />
+        <JobTypeMenu />
       </div>
     </header>
   );

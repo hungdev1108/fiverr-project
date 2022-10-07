@@ -1,0 +1,2 @@
+export const SET_LIST_JOB_TYPE_MENU = "SET_LIST_JOB_TYPE_MENU";
+export const SET_LIST_JOB = "SET_LIST_JOB";

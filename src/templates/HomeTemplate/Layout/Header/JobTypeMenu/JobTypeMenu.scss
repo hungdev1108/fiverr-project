@@ -6,12 +6,18 @@
   .main__job--content {
     display: flex;
     justify-content: flex-start;
-    a {
-      display: block;
-      text-decoration: none;
+    div {
       text-align: center;
-      font-size: 0.875rem;
-      color: #7a7d85;
+      a {
+        font-weight: 600;
+        padding: 0 1.5rem;
+        text-decoration: none;
+        text-align: center;
+        color: #7a7d85;
+        &:hover {
+          color: #1dbf73;
+        }
+      }
     }
   }
 }
