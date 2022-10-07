@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.scss";
+import MainJob from "./MainJob/MainJob";
 
 function Header() {
   return (
@@ -62,6 +63,9 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <div className="container">
+        <MainJob />
+      </div>
     </header>
   );
 }
