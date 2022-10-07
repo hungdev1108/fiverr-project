@@ -3,6 +3,7 @@ import HomeSlider from "./HomeSlider/HomeSlider";
 import "./Home.scss";
 import PopularService from "Pages/Home/PopularService/PopularService";
 import Selling from "./Selling/Selling";
+import Testimonial from "./Testimonial/Testimonial";
 
 function Home() {
   return (
@@ -46,9 +47,11 @@ function Home() {
         </div>
       </div>
 
-      <PopularService/>
-      <Selling/>
-      
+      <PopularService />
+
+      <Selling />
+
+      <Testimonial />
     </div>
   );
 }

@@ -3,11 +3,11 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 function SearchCarousel(props) {
-  const history = useHistory()
+  const history = useHistory();
   const [valueSearch, setValueSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/listJob/${valueSearch}`);
+    if (valueSearch !== "") history.push(`/listJob/${valueSearch}`);
     setValueSearch("");
   };
   return (
