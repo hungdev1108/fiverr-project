@@ -4,6 +4,7 @@ import "./Home.scss";
 import PopularService from "Pages/Home/PopularService/PopularService";
 import Selling from "./Selling/Selling";
 import Testimonial from "./Testimonial/Testimonial";
+import Marketplace from "./Marketplace/Marketplace";
 
 function Home() {
   return (
@@ -50,6 +51,8 @@ function Home() {
       <PopularService />
 
       <Selling />
+
+      <Marketplace />
 
       <Testimonial />
     </div>
