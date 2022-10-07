@@ -1,7 +1,8 @@
 import React from "react";
 import HomeSlider from "./HomeSlider/HomeSlider";
 import "./Home.scss";
-import PopularService from "components/PopularService/PopularService";
+import PopularService from "Pages/Home/PopularService/PopularService";
+import Selling from "./Selling/Selling";
 
 function Home() {
   return (
@@ -46,6 +47,8 @@ function Home() {
       </div>
 
       <PopularService/>
+      <Selling/>
+      
     </div>
   );
 }
