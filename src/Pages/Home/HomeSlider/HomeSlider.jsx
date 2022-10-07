@@ -1,7 +1,12 @@
-import React from "react";
+import { Carousel } from "react-bootstrap";
+
+import imageBanner from 'assets/images/svgImage'
+import './HomeSlider.scss'
 
 function HomeSlider() {
-  return <div>HomeSlider</div>;
+  return <div className="HomeSlider">
+    banner
+  </div>;
 }
 
 export default HomeSlider;
