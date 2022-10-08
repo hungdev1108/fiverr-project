@@ -1,5 +1,4 @@
 import { AuthRoute } from "Guard/Guard";
-import { createBrowserHistory } from "history";
 import Home from "Pages/Home/Home";
 import JobDetail from "Pages/JobDetail/JobDetail";
 import ListJob from "Pages/ListJob/ListJob";
@@ -7,11 +6,9 @@ import JobListJobType from "Pages/JobListJobType/JobListJobType";
 import Profile from "Pages/Profile/Profile";
 import SignIn from "Pages/SignIn/SignIn";
 import SignUp from "Pages/SignUp/SignUp";
-import { Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomeTemplate from "templates/HomeTemplate/HomeTemplate";
 import "./App.css";
-
-export const history = createBrowserHistory();
 
 // Lazy load - Code Splitting
 // const Signin = React.lazy(() => import("./features/authentication/pages/Signin"));
@@ -19,7 +16,7 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
+      <Router>
         {/* <Loading /> */}
         <Switch>
           {/* Components */}
