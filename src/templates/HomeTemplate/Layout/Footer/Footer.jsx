@@ -172,7 +172,7 @@ function Footer() {
             </div>
           </Col>
         </Row>
-        <div className="bottom d-flex flex-wrap justify-content-between">
+        <div className="bottom d-flex">
           <div className="left">
             <span className="fiverr-logo-footer">
               <svg width="91" height="27" viewBox="0 0 91 27" fill="none" xmlns="http://www.w3.org/2000/svg">

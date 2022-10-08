@@ -8,7 +8,6 @@
   }
   .trusted-by {
     background-color: #fafafa;
-    margin-bottom: 96px;
     span {
       padding-right: 20px;
       color: #b5b6ba;
@@ -20,6 +19,9 @@
       li {
         padding-right: 60px;
       }
+    }
+    @media screen and (max-width:992px) {
+      display: none;
     }
   }
 
