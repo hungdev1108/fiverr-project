@@ -21,8 +21,8 @@ function App() {
         <Switch>
           {/* Components */}
           <HomeTemplate path="/home" exact Component={Home} />
-          <HomeTemplate path="/jobDetail/:id" exact Component={JobDetail} />
-          <HomeTemplate path="/listJob/:typeJobId" exact Component={ListJob} />
+          <HomeTemplate path="/listJob/:valueSearch" exact Component={ListJob} />
+          <HomeTemplate path="/jobDetail/:jobId" exact Component={JobDetail} />
           <HomeTemplate path="/jobListJobType/:detailMainJobId" exact Component={JobListJobType} />
 
           <HomeTemplate path="/profile" exact Component={Profile} />
