@@ -10,7 +10,7 @@ function JobTypeMenu(props) {
   const dispatch = useDispatch();
 
   const { menuLoaiCongViec } = useSelector((state) => state.ManagerJobReducer);
-  console.log("menuLoaiCongViec:", menuLoaiCongViec);
+  // console.log("menuLoaiCongViec:", menuLoaiCongViec);
 
   useEffect(() => {
     dispatch(getJobTypeMenuAction());

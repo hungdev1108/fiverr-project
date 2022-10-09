@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Herobanner from "./HeroBanner/HeroBanner";
 import Popular from "./Popular/Popular";
 import RelatedLink from "./RelatedLink/RelatedLink";
 import "./JobListJobType.scss";
 import Explore from "./Explore/Explore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getChiTietLoaiCongViecAction } from "store/actions/ManagerJobAction";
 
 function JobListJobType(props) {
-  const match = useRouteMatch();
-  const id = match.params.detailMainJobId;
-  //call api lay chi tiet loai cong viec truyen id vao
   const dispatch = useDispatch();
+  const match = useRouteMatch();
+  const id = match.params.jobTypeId;
+  const categoryJob = useSelector(
+    (state) => state.ManagerJobReducer.chiTietLoaiCongViec[0]
+  );
+  const title = categoryJob?.tenLoaiCongViec;
+
+  useEffect(() => {
+    dispatch(getChiTietLoaiCongViecAction(id));
+  }, [id]);
 
   return (
     <div className="JobListJobType">
-      <Herobanner title={match.params.detailMainJobId} />
+      <Herobanner title={title} />
 
-      <Popular title={match.params.detailMainJobId} />
+      <Popular title={title} />
 
-      <Explore title={match.params.detailMainJobId} />
+      <Explore title={title} data={categoryJob?.dsNhomChiTietLoai} />
 
-      <RelatedLink title={match.params.detailMainJobId} />
+      <RelatedLink title={title} />
     </div>
   );
 }
