@@ -1,5 +1,11 @@
 import { managerJobServices } from "services/ManagerJobServices";
-import { SET_LIST_JOB, SET_LIST_JOB_TYPE_MENU } from "store/types/ManagerJobType";
+import {
+  SET_CHI_TIET_LOAI_CONG_VIEC,
+  SET_CONG_VIEC_CHI_TIET,
+  SET_CONG_VIEC_THEO_CHI_TIET_LOAI,
+  SET_DANH_SACH_CONG_VIEC_THEO_TEN,
+  SET_LIST_JOB_TYPE_MENU,
+} from "store/types/ManagerJobType";
 
 export const getJobTypeMenuAction = () => {
   return async (dispatch) => {
@@ -7,7 +13,7 @@ export const getJobTypeMenuAction = () => {
       const result = await managerJobServices.getJobTypeMenu();
       dispatch({
         type: SET_LIST_JOB_TYPE_MENU,
-        lstJobTypeMenu: result.data.content,
+        menuLoaiCongViec: result.data.content,
       });
       //   console.log(result.data.content);
     } catch (errors) {
@@ -16,13 +22,58 @@ export const getJobTypeMenuAction = () => {
   };
 };
 
-export const getListJobAction = () => {
+export const getChiTietLoaiCongViecAction = (id) => {
   return async (dispatch) => {
     try {
-      const result = await managerJobServices.getListJob();
+      const result = await managerJobServices.getChiTietLoaiCongViec(id);
       dispatch({
-        type: SET_LIST_JOB,
-        lstJob: result.data.content,
+        type: SET_CHI_TIET_LOAI_CONG_VIEC,
+        chiTietLoaiCongViec: result.data.content,
+      });
+      //   console.log(result.data.content);
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
+};
+
+export const getCongViecTheoChiTietLoaiAction = (id) => {
+  return async (dispatch) => {
+    try {
+      const result = await managerJobServices.getCongViecTheoChiTietLoai(id);
+      dispatch({
+        type: SET_CONG_VIEC_THEO_CHI_TIET_LOAI,
+        danhSachCongViec: result.data.content,
+      });
+      //   console.log(result.data.content);
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
+};
+
+export const getCongViecChiTietAction = (id) => {
+  return async (dispatch) => {
+    try {
+      const result = await managerJobServices.getCongViecChiTiet(id);
+      dispatch({
+        type: SET_CONG_VIEC_CHI_TIET,
+        congViecChiTiet: result.data.content,
+      });
+      //   console.log(result.data.content);
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
+};
+
+export const getDanhSachCongViecTheoTenAction = (tenCongViec) => {
+  return async (dispatch) => {
+    try {
+      const result = await managerJobServices.getDanhSachCongViecTheoTen(tenCongViec);
+      dispatch({
+        type: SET_DANH_SACH_CONG_VIEC_THEO_TEN,
+        danhSachCongViec: result.data.content,
       });
       //   console.log(result.data.content);
     } catch (errors) {

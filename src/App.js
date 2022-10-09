@@ -9,9 +9,6 @@ import SignUp from "Pages/SignUp/SignUp";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomeTemplate from "templates/HomeTemplate/HomeTemplate";
 import "./App.css";
-
-
-
 // Lazy load - Code Splitting
 
 // const Signin = React.lazy(() => import("./features/authentication/pages/Signin"));
@@ -24,7 +21,7 @@ function App() {
         <Switch>
           {/* Components */}
           <HomeTemplate path="/home" exact Component={Home} />
-          <HomeTemplate path="/listJob/:valueSearch" exact Component={ListJob} />
+          <HomeTemplate path="/listJob" exact Component={ListJob} />
           <HomeTemplate path="/jobDetail/:jobId" exact Component={JobDetail} />
           <HomeTemplate path="/jobListJobType/:jobTypeId" exact Component={JobListJobType} />
 

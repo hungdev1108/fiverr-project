@@ -7,14 +7,12 @@ function SearchCarousel(props) {
   const [valueSearch, setValueSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (valueSearch !== "") history.push(`/listJob/${valueSearch}`);
+    if (valueSearch !== "") history.push(`/listJob/?valueSearch=${valueSearch}`);
     setValueSearch("");
   };
   return (
     <div className="SearchCarousel">
-      <h1 className="title-search text-white">
-        Find the perfect freelance services for your business
-      </h1>
+      <h1 className="title-search text-white">Find the perfect freelance services for your business</h1>
 
       <form onSubmit={handleSubmit} className="input-group mr-3 py-3">
         <input

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeSlider from "./HomeSlider/HomeSlider";
 import "./Home.scss";
 import PopularService from "Pages/Home/PopularService/PopularService";
 import Selling from "./Selling/Selling";
 import Testimonial from "./Testimonial/Testimonial";
 import Marketplace from "./Marketplace/Marketplace";
+import { useDispatch } from "react-redux";
+import { getChiTietLoaiCongViecAction } from "store/actions/ManagerJobAction";
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getChiTietLoaiCongViecAction(1));
+  }, []);
+
   return (
     <div className="Home">
       <HomeSlider />
-      
+
       <div className="trusted-by container-fluid">
         <div className="container d-flex justify-content-center align-items-center">
           <span>Trusted by:</span>

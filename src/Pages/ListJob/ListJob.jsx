@@ -5,28 +5,32 @@ import { getListJobAction } from "store/actions/ManagerJobAction";
 import JobItem from "./JobItem/JobItem";
 import { DownOutlined } from "@ant-design/icons";
 import "./ListJob.scss";
+import { useLocation } from "react-router-dom";
 
 function ListJob() {
+  const location = useLocation();
+  let urlParams = new URLSearchParams(location.search);
+  const valueSearch = urlParams.get("valueSearch");
+  const maChiTietLoai = urlParams.get("maChiTietLoai");
+
+  console.log(valueSearch);
+
   const dispatch = useDispatch();
-  const { lstJob } = useSelector((state) => state.ManagerJobReducer);
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
 
-  console.log(lstJob);
+  useEffect(() => {}, []);
+  // Config useParams
 
-  useEffect(() => {
-    dispatch(getListJobAction());
-  }, []);
-
-  const renderJob = () => {
-    return lstJob?.map((job, index) => {
-      return (
-        <div key={index} className="col-12 col-md-6 col-lg-3 mb-5">
-          <JobItem job={job} />
-        </div>
-      );
-    });
-  };
+  //   const renderJob = () => {
+  //     return lstJob?.map((job, index) => {
+  //       return (
+  //         <div key={index} className="col-12 col-md-6 col-lg-3 mb-5">
+  //           <JobItem job={job} />
+  //         </div>
+  //       );
+  //     });
+  //   };
 
   return (
     <section id="listJob" className="mt-4">
@@ -78,9 +82,7 @@ function ListJob() {
             </div>
           </div>
         </div>
-        <div className="listJob__content">
-          <div className="row">{renderJob()}</div>
-        </div>
+        <div className="listJob__content">{/* <div className="row">{renderJob()}</div> */}</div>
         <Pagination
           style={{
             display: "flex",
