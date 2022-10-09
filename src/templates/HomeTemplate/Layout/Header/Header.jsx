@@ -1,3 +1,4 @@
+import { history } from "App";
 import { logoSvg } from "assets/images/svgImage";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
@@ -6,12 +7,14 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Header.scss";
 import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
 
-function Header() {
+function Header(props) {
   return (
     <header id="header">
       <Navbar expand="xl" variant="light">
         <Container className="header__top">
-          <Navbar.Brand className="header__top--logo">{logoSvg}</Navbar.Brand>
+          <Navbar.Brand className="header__top--logo">
+            <a href="/">{logoSvg}</a>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form className="d-flex search">

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { getJobTypeMenuAction } from "store/actions/ManagerJobAction";
 import "./JobTypeMenu.scss";
 
-function JobTypeMenu() {
+function JobTypeMenu(props) {
   const dispatch = useDispatch();
 
   const { lstJobTypeMenu } = useSelector((state) => state.ManagerJobReducer);
@@ -21,7 +21,7 @@ function JobTypeMenu() {
       return (
         <Col key={index}>
           <div>
-            <NavLink to="/jobListJobType">{jobItem.tenLoaiCongViec}</NavLink>
+            <NavLink to="/jobListJobType/2121">{jobItem.tenLoaiCongViec}</NavLink>
           </div>
         </Col>
       );
