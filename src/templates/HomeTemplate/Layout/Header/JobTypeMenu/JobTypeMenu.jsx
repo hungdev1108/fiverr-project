@@ -21,7 +21,9 @@ function JobTypeMenu(props) {
       return (
         <Col key={index}>
           <div>
-            <NavLink to="/jobListJobType/2121">{jobItem.tenLoaiCongViec}</NavLink>
+            <NavLink to={`/jobListJobType/${jobItem.id}`}>
+              {jobItem.tenLoaiCongViec}
+            </NavLink>
           </div>
         </Col>
       );
@@ -31,7 +33,9 @@ function JobTypeMenu(props) {
   return (
     <section className="main__job" id="mainJob">
       <Container className="main__job--container">
-        <Row className="main__job--content px-2 py-2">{renderJobTypeMenu()}</Row>
+        <Row className="main__job--content px-2 py-2">
+          {renderJobTypeMenu()}
+        </Row>
       </Container>
     </section>
   );

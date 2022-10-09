@@ -10,7 +10,10 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomeTemplate from "templates/HomeTemplate/HomeTemplate";
 import "./App.css";
 
+
+
 // Lazy load - Code Splitting
+
 // const Signin = React.lazy(() => import("./features/authentication/pages/Signin"));
 
 function App() {

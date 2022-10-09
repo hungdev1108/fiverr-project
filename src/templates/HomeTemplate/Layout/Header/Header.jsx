@@ -13,7 +13,7 @@ function Header(props) {
       <Navbar expand="xl" variant="light">
         <Container className="header__top">
           <Navbar.Brand className="header__top--logo">
-            <a href="/">{logoSvg}</a>
+            <Nav.Link href="/">{logoSvg}</Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

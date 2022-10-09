@@ -1,0 +1,17 @@
+.Explore {
+  margin-top: 56px;
+  margin-bottom: 88px;
+  .title {
+    font-size: 24px;
+    line-height: 130%;
+    color: #404145;
+    font-weight: 700;
+  }
+  .bucket-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 32px;
+    row-gap: 64px;
+    margin-top: 24px;
+  }
+}
