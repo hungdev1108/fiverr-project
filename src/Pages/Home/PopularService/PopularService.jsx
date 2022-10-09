@@ -64,8 +64,8 @@ const settings = {
 
 export default function PopularService() {
   return (
-    <div className="PopularService container">
-      <h2 className="title">Popular professional services</h2>
+    <div className="PopularService container-fluid">
+      <h2 className="title container">Popular professional services</h2>
       <div className="slider-package container">
         <Slider {...settings}>
           <div className="item">

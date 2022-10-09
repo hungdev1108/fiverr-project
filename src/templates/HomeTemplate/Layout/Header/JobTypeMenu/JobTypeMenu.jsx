@@ -21,7 +21,7 @@ function JobTypeMenu() {
       return (
         <Col key={index}>
           <div>
-            <NavLink to={`/jobListJobType/${jobItem.tenLoaiCongViec}`}>
+            <NavLink to={`/jobListJobType/${jobItem.id}`}>
               {jobItem.tenLoaiCongViec}
             </NavLink>
           </div>
