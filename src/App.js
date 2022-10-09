@@ -23,7 +23,7 @@ function App() {
           <HomeTemplate path="/home" exact Component={Home} />
           <HomeTemplate path="/listJob/:valueSearch" exact Component={ListJob} />
           <HomeTemplate path="/jobDetail/:jobId" exact Component={JobDetail} />
-          <HomeTemplate path="/jobListJobType/:detailMainJobId" exact Component={JobListJobType} />
+          <HomeTemplate path="/jobListJobType/:jobTypeId" exact Component={JobListJobType} />
 
           <HomeTemplate path="/profile" exact Component={Profile} />
 
