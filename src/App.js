@@ -10,9 +10,10 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomeTemplate from "templates/HomeTemplate/HomeTemplate";
 import "./App.css";
 
-// export const history = createBrowserHistory();
+
 
 // Lazy load - Code Splitting
+
 // const Signin = React.lazy(() => import("./features/authentication/pages/Signin"));
 
 function App() {
@@ -23,9 +24,9 @@ function App() {
         <Switch>
           {/* Components */}
           <HomeTemplate path="/home" exact Component={Home} />
-          <HomeTemplate path="/jobDetail/:id" exact Component={JobDetail} />
-          <HomeTemplate path="/listJob/:typeJobId" exact Component={ListJob} />
-          <HomeTemplate path="/jobListJobType/:detailMainJobId" exact Component={JobListJobType} />
+          <HomeTemplate path="/listJob/:valueSearch" exact Component={ListJob} />
+          <HomeTemplate path="/jobDetail/:jobId" exact Component={JobDetail} />
+          <HomeTemplate path="/jobListJobType/:jobTypeId" exact Component={JobListJobType} />
 
           <HomeTemplate path="/profile" exact Component={Profile} />
 
