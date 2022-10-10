@@ -8,4 +8,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .jobItem__heart {
+    i {
+      transition: all 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: rgb(251, 41, 41);
+      }
+    }
+  }
 }
