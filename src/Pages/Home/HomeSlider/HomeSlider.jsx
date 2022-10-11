@@ -6,8 +6,8 @@ import SearchCarousel from "./SearchCarousel";
 
 function HomeSlider() {
   return (
-    <div className="HomeSlider">
-      <div className="position-relative container-fuild">
+    <div className="HomeSlider position-relative">
+      
         <div className="position-relative cpn-carousel">
           <div className="position-absolute search_input">
             <SearchCarousel />
@@ -31,7 +31,7 @@ function HomeSlider() {
             </Carousel>
           </div>
         </div>
-      </div>
+      
     </div>
   );
 }
