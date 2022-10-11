@@ -25,7 +25,7 @@ function Header(props) {
             <Nav.Link href="/">{logoSvg}</Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse className="showNav" id="basic-navbar-nav">
             <Form onSubmit={handleSubmit} className="d-flex search">
               <Form.Control
                 type="search"
@@ -39,7 +39,7 @@ function Header(props) {
                 <i className="fas fa-search"></i>
               </Button>
             </Form>
-            <Nav className="ml-auto align-items-lg-center">
+            <Nav className="ml-auto align-items-lg-center navCustom">
               <Nav.Link href="#">Fiverr Business</Nav.Link>
               <Nav.Link href="#">Explore</Nav.Link>
               <Nav.Link href="#">English</Nav.Link>

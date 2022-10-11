@@ -1,3 +1,4 @@
+@import "../../../../../assets/scss/App.scss";
 #mainJob {
   .main__job--container {
     border-bottom: 1px solid #dee2e6;
@@ -17,6 +18,15 @@
         &:hover {
           color: #1dbf73;
         }
+
+        @include tablet-md {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        @include mobile-xs {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -24,6 +34,16 @@
       position: absolute;
       li {
         list-style: none;
+      }
+    }
+    @include tablet-md {
+      padding: 0.5rem 0.5rem 1rem 0.5rem !important;
+    }
+  }
+  .row {
+    .jobItem {
+      @include tablet-md {
+        margin-top: 1rem;
       }
     }
   }

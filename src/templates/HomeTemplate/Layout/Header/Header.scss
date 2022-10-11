@@ -1,3 +1,4 @@
+@import "../../../../assets/scss/App.scss";
 #header {
   .header__top {
     .userLogin {
@@ -7,6 +8,25 @@
     &--logo {
       cursor: pointer;
       padding-bottom: 1rem;
+    }
+    .showNav {
+      .search {
+        @include tablet-md {
+          padding: 0 1.5rem;
+        }
+        @include mobile-xs {
+          //   display: none !important;
+          padding: 0 1.5rem;
+        }
+      }
+      .navCustom {
+        @include tablet-md {
+          padding: 0 1.5rem;
+        }
+        @include mobile-xs {
+          padding: 0 1.5rem;
+        }
+      }
     }
   }
   .nav-item.dropdown {
@@ -68,6 +88,13 @@
     .btn-primary.focus {
       color: #fff;
       box-shadow: none;
+    }
+    @include tablet-md {
+      width: 55%;
+    }
+    @include mobile-xs {
+      width: 100%;
+      margin-bottom: 0.5rem;
     }
   }
 

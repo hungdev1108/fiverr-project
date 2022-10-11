@@ -43,7 +43,7 @@ function ListJob() {
       return <></>;
     }
     if (valueSearch) {
-      return <h1>Results for "{valueSearch}"</h1>;
+      return <h1 className="search__title">Results for "{valueSearch}"</h1>;
     }
   };
 

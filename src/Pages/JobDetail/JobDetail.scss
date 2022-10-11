@@ -1,9 +1,14 @@
+@import "../../assets/scss/App.scss";
 #jobDetail {
+  //breadcrumb
   .breadcrumb {
     padding: 0;
     &-item {
       a {
         color: #6c757d;
+      }
+      @include mobile-xs {
+        font-size: 0.7rem;
       }
     }
     &-item.active {
@@ -11,17 +16,24 @@
     }
   }
 
+  // jobDetail__info-userCreate
   .jobDetail__info-userCreate {
     .info__userCreate--star {
       &::before {
         content: "";
         height: 70%;
         border: 1px solid #a5a6a9;
+        @include mobile-xs {
+          display: none;
+        }
       }
       &::after {
         content: "";
         height: 70%;
         border: 1px solid #a5a6a9;
+      }
+      @include mobile-xs {
+        padding-left: 1.2rem;
       }
     }
 
@@ -34,12 +46,54 @@
       span {
         color: green;
       }
+      @include mobile-xs {
+        margin-top: 0.7rem;
+        margin-left: 2.2rem !important;
+      }
+    }
+
+    @include mobile-xs {
+      flex-wrap: wrap;
     }
   }
+
+  // jobDetail__sellers-description
   .jobDetail__sellers-description {
     .title__ratedSeller {
       display: inline-block;
       background-color: #e7b11e74;
+    }
+  }
+
+  // jobDetail__content
+  .jobDetail__content {
+    .jobDetail__title {
+      @include mobile-xs {
+        font-size: 1.5rem;
+      }
+    }
+    .seller__progressBar {
+      @include mobile-xs {
+        flex-direction: column;
+        align-items: flex-start !important;
+      }
+      .rating__desc {
+        @include mobile-xs {
+          margin-top: 0.4rem;
+          margin-left: 0 !important;
+        }
+      }
+    }
+    .jobDetail__review {
+      @include mobile-xs {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+      .jobDetail__review--left {
+        @include mobile-xs {
+          margin-top: 1rem;
+        }
+      }
     }
   }
 

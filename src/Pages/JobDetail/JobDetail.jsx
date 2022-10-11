@@ -44,7 +44,7 @@ function JobDetail(props) {
         <div className="jobDetail__content">
           <div className="row">
             <div className="col-12 col-lg-8">
-              <h2 className="mt-2">{congViecChiTiet[0]?.congViec.tenCongViec}</h2>
+              <h2 className="mt-2 jobDetail__title">{congViecChiTiet[0]?.congViec.tenCongViec}</h2>
               {/* Detail Job INFO USER CREATE */}
               <div className="jobDetail__info-userCreate d-flex align-items-center mt-4">
                 <img width={28} height={28} src={congViecChiTiet[0]?.avatar} alt="" className="rounded-circle" />
@@ -211,8 +211,8 @@ function JobDetail(props) {
               </div>
 
               {/* REVIEWS */}
-              <div className="d-flex justify-content-between align-items-end">
-                <div className="mt-5 d-flex align-items-center">
+              <div className="jobDetail__review d-flex justify-content-between align-items-end ">
+                <div className="jobDetail__review--right mt-5 d-flex align-items-center">
                   <h4 className="m-0 mr-2">335 Reviews</h4>
                   <i className="fa fa-star text-warning"></i>
                   <i className="fa fa-star text-warning ml-1"></i>
@@ -221,7 +221,7 @@ function JobDetail(props) {
                   <i className="fa fa-star text-warning ml-1"></i>
                   <span className="text-warning ml-1 mr-1">5</span>
                 </div>
-                <div>
+                <div className="jobDetail__review--left">
                   <p className="m-0">
                     Sort by
                     <span className="font-weight-bold ml-2">
@@ -231,22 +231,22 @@ function JobDetail(props) {
                 </div>
               </div>
               {/* 5* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-primary">5 Stars (330)</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={95} />
                 </div>
-                <div className="ml-5">
+                <div className="ml-5 rating__desc">
                   <span className="font-weight-bold">Rating Breakdown</span>
                 </div>
               </div>
               {/* 4* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-primary">4 Stars (5)</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={5} />
                 </div>
-                <div className="ml-5">
+                <div className="ml-5 rating__desc">
                   <span className="text-secondary d-flex align-items-center">
                     Seller communication level
                     <span className="ml-3">5</span>
@@ -255,12 +255,12 @@ function JobDetail(props) {
                 </div>
               </div>
               {/* 3* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">3 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
                 </div>
-                <div className="ml-5 ">
+                <div className="ml-5 rating__desc ">
                   <span className="text-secondary d-flex align-items-center">
                     Recommend to a friend
                     <span className="ml-3">5</span>
@@ -269,12 +269,12 @@ function JobDetail(props) {
                 </div>
               </div>
               {/* 2* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">2 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
                 </div>
-                <div className="ml-5 ">
+                <div className="ml-5 rating__desc ">
                   <span className="text-secondary d-flex align-items-center">
                     Service as described
                     <span className="ml-3">5</span>
@@ -283,7 +283,7 @@ function JobDetail(props) {
                 </div>
               </div>
               {/* 1* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">1 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
@@ -361,7 +361,7 @@ function JobDetail(props) {
                       <FloatingLabel controlId="floatingTextarea" className="">
                         <Form.Control as="textarea" placeholder="Leave a comment here..." />
                       </FloatingLabel>
-                      <button className="btn btn-primary mb-3">Add Comment</button>
+                      <button className="btn btn-primary mb-5">Add Comment</button>
                     </div>
                   </div>
                 </div>

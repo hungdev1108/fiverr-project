@@ -50,7 +50,7 @@ function JobTypeMenu(props) {
   const renderJobTypeMenu = () => {
     return menuLoaiCongViec.map((jobItem, index) => {
       return (
-        <Col key={index}>
+        <div className="jobItem col-sm-6 col-lg" key={index}>
           <div>
             <OverlayTrigger
               placement="bottom"
@@ -68,12 +68,12 @@ function JobTypeMenu(props) {
                   history.push(`/jobListJobType/${jobItem.id}`);
                 }}
               >
-                {jobItem.tenLoaiCongViec}
+                <span className="">{jobItem.tenLoaiCongViec}</span>
                 <i className="ml-2 fa fa-chevron-down icon-dropdown"></i>
               </div>
             </OverlayTrigger>
           </div>
-        </Col>
+        </div>
       );
     });
   };
