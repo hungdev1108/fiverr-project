@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./JobItem.scss";

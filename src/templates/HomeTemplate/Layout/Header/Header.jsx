@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Header.scss";
 import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
 

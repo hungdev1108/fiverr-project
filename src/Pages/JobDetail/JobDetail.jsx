@@ -213,7 +213,7 @@ function JobDetail(props) {
               {/* REVIEWS */}
               <div className="d-flex justify-content-between align-items-end">
                 <div className="mt-5 d-flex align-items-center">
-                  <h4 className="m-0 mr-2"> 335 Reviews</h4>
+                  <h4 className="m-0 mr-2">335 Reviews</h4>
                   <i className="fa fa-star text-warning"></i>
                   <i className="fa fa-star text-warning ml-1"></i>
                   <i className="fa fa-star text-warning ml-1"></i>

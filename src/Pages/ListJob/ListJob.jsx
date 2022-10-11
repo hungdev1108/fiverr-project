@@ -1,11 +1,11 @@
-import { Pagination } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import JobItem from "./JobItem/JobItem";
 import { DownOutlined } from "@ant-design/icons";
-import "./ListJob.scss";
+import { Pagination } from "antd";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getCongViecTheoChiTietLoaiAction, getDanhSachCongViecTheoTenAction } from "store/actions/ManagerJobAction";
+import JobItem from "./JobItem/JobItem";
+import "./ListJob.scss";
 
 function ListJob() {
   const location = useLocation();
