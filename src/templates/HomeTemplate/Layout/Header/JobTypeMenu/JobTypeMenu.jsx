@@ -11,6 +11,7 @@ function JobTypeMenu(props) {
   const history = useHistory();
 
   const { menuLoaiCongViec } = useSelector((state) => state.ManagerJobReducer);
+
   const [showSubMenu, setShowSubMenu] = useState(false);
 
   const renderTooltip = (props, jobItem) => {
@@ -42,6 +43,9 @@ function JobTypeMenu(props) {
       </Tooltip>
     );
   };
+
+  
+
 
   useEffect(() => {
     dispatch(getJobTypeMenuAction());

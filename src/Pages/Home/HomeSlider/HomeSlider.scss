@@ -19,9 +19,13 @@
     .search_input {
       left: 10%;
       z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+
       .SearchCarousel {
-        margin-top: 50%;
-        transform: translateY(-50%);
+        .title-search {
+          max-width: 650px;
+        }
         .popular {
           Button {
             padding: 1px 12px 0;
@@ -31,9 +35,6 @@
             margin-right: 5px;
           }
         }
-      }
-      .title-search {
-        max-width: 650px;
       }
     }
   }
@@ -52,16 +53,19 @@
 }
 
 @media screen and (max-width: 768px) {
-  .banner{
+  .cpn-carousel{
+    position: absolute !important;
+  }
+  .banner {
     display: none;
   }
-  .popular{
+  .popular {
     display: none;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .title-search{
+  .title-search {
     font-size: 25px;
   }
 }
