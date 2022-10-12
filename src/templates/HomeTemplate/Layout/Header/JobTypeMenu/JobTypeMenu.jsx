@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
@@ -27,13 +27,28 @@ function JobTypeMenu(props) {
               <div key={index}>
                 {item.dsChiTietLoai.map((item, index) => {
                   return (
+                    // Xử dụng thẻ Link không render giao diện khi url thay đổi
                     <Link
                       key={index}
-                      to={`/listJob/?maChiTietLoai=${item.id}`}
                       className="list-group-item list-group-item-action h6"
+                      to={`/listJob/?maChiTietLoai=${item.id}`}
                     >
                       {item.tenChiTiet}
                     </Link>
+                    /* <div
+                      role="button"
+                      key={index}
+                      onClick={() => {
+                        history.push(`/listJob/?maChiTietLoai=${item.id}`);
+                        window.location.reload();
+                      }}
+                      className="list-group-item list-group-item-action h6"
+
+                      //   to={`/listJob/?maChiTietLoai=${item.id}`}
+                      // Xử dụng thẻ Link không render giao diện khi url thay đổi
+                    >
+                      {item.tenChiTiet}
+                    </div> */
                   );
                 })}
               </div>
@@ -43,9 +58,6 @@ function JobTypeMenu(props) {
       </Tooltip>
     );
   };
-
-  
-
 
   useEffect(() => {
     dispatch(getJobTypeMenuAction());

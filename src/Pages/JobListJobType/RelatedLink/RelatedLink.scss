@@ -1,3 +1,4 @@
+@import "../../../assets/scss/App.scss";
 .RelatedLink {
   padding: 32px 0;
   text-align: center;
@@ -30,5 +31,9 @@
         }
       }
     }
+  }
+  // New responsive
+  @include mobile-xs {
+    padding: 1.5rem !important;
   }
 }
