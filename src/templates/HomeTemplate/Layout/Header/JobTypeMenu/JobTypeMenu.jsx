@@ -28,14 +28,14 @@ function JobTypeMenu(props) {
                 {item.dsChiTietLoai.map((item, index) => {
                   return (
                     // Xử dụng thẻ Link không render giao diện khi url thay đổi
-                    <Link
+                    /* <Link
                       key={index}
                       className="list-group-item list-group-item-action h6"
                       to={`/listJob/?maChiTietLoai=${item.id}`}
                     >
                       {item.tenChiTiet}
-                    </Link>
-                    /* <div
+                    </Link> */
+                    <div
                       role="button"
                       key={index}
                       onClick={() => {
@@ -43,12 +43,9 @@ function JobTypeMenu(props) {
                         window.location.reload();
                       }}
                       className="list-group-item list-group-item-action h6"
-
-                      //   to={`/listJob/?maChiTietLoai=${item.id}`}
-                      // Xử dụng thẻ Link không render giao diện khi url thay đổi
                     >
                       {item.tenChiTiet}
-                    </div> */
+                    </div>
                   );
                 })}
               </div>
