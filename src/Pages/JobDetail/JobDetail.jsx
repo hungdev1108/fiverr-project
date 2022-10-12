@@ -1,24 +1,42 @@
 import { Tabs } from "antd";
+import { Fragment, useEffect } from "react";
 import { FloatingLabel, Form, ProgressBar } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
+import { getBinhLuanTheoMaCongViecAction } from "store/actions/ManagerCommentAction";
+import { getCongViecChiTietAction } from "store/actions/ManagerJobAction";
 import "./JobDetail.scss";
 
 const { TabPane } = Tabs;
 
-function JobDetail() {
+function JobDetail(props) {
+  const dispatch = useDispatch();
+  const match = useRouteMatch();
+
+  const jobId = match.params.jobId;
+  //   console.log(jobId);
+
+  const { congViecChiTiet } = useSelector((state) => state.ManagerJobReducer);
+  const { danhSachBinhLuan } = useSelector((state) => state.ManagerCommentReducer);
+
+  console.log("congViecChiTiet:", congViecChiTiet);
+  console.log("danhSachBinhLuan:", danhSachBinhLuan);
+
+  useEffect(() => {
+    dispatch(getCongViecChiTietAction(jobId));
+    dispatch(getBinhLuanTheoMaCongViecAction(jobId));
+  }, []);
+
   return (
     <section id="jobDetail" className="mt-4">
       <div className="container">
         <div className="jobDetail__breadcrumb">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-white">
-              <li className="breadcrumb-item">
-                <a href="#"> Programing & Tech</a>
-              </li>
-              <li className="breadcrumb-item">
-                <a href="#">Website Builders & CMS</a>
-              </li>
+              <li className="breadcrumb-item text-secondary">{congViecChiTiet[0]?.tenLoaiCongViec}</li>
+              <li className="breadcrumb-item text-secondary">{congViecChiTiet[0]?.tenNhomChiTietLoai}</li>
               <li className="breadcrumb-item active" aria-current="page">
-                Full Website Creation
+                {congViecChiTiet[0]?.tenChiTietLoai}
               </li>
             </ol>
           </nav>
@@ -26,26 +44,48 @@ function JobDetail() {
         <div className="jobDetail__content">
           <div className="row">
             <div className="col-12 col-lg-8">
-              <h2 className="mt-2">I will do custom css, html, javascript, PHP coding</h2>
+              <h2 className="mt-2 jobDetail__title">{congViecChiTiet[0]?.congViec.tenCongViec}</h2>
               {/* Detail Job INFO USER CREATE */}
               <div className="jobDetail__info-userCreate d-flex align-items-center mt-4">
-                <img
-                  width={28}
-                  height={28}
-                  src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-1/297993792_2335625759933235_726241504302813939_n.jpg?stp=c0.42.148.148a_dst-jpg_p148x148&_nc_cat=103&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=7om80uHN7Y4AX8nI3bV&_nc_ht=scontent.fsgn5-12.fna&oh=00_AT91UvWBgQHYAkwCuqXeN6-3XAu-MOtG2Vgt00Evfix-5A&oe=6346A05C"
-                  alt=""
-                  className="rounded-circle"
-                />
-                <h6 className="m-0 ml-2 font-weight-bold">hungdev1108</h6>
+                <img width={28} height={28} src={congViecChiTiet[0]?.avatar} alt="" className="rounded-circle" />
+                <h6 className="m-0 ml-2 font-weight-bold">{congViecChiTiet[0]?.tenNguoiTao}</h6>
                 <span className="ml-2 text-warning">Top Rated Seller</span>
                 <span className="ml-2 info__userCreate--star">
-                  <i className="fa fa-star text-warning ml-2"></i>
-                  <i className="fa fa-star text-warning ml-1"></i>
-                  <i className="fa fa-star text-warning ml-1"></i>
-                  <i className="fa fa-star text-warning ml-1"></i>
-                  <i className="fa fa-star text-warning ml-1"></i>
-                  <span className="text-warning ml-1 mr-1">5</span>
-                  <span className="text-secondary mr-2">(999)</span>
+                  {congViecChiTiet[0]?.congViec.saoCongViec === 1 ? (
+                    <i className="fa fa-star text-warning ml-2"></i>
+                  ) : congViecChiTiet[0]?.congViec.saoCongViec === 2 ? (
+                    <Fragment>
+                      <i className="fa fa-star text-warning ml-2"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                    </Fragment>
+                  ) : congViecChiTiet[0]?.congViec.saoCongViec === 3 ? (
+                    <Fragment>
+                      <i className="fa fa-star text-warning ml-2"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                    </Fragment>
+                  ) : congViecChiTiet[0]?.congViec.saoCongViec === 4 ? (
+                    <Fragment>
+                      <i className="fa fa-star text-warning ml-2"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                    </Fragment>
+                  ) : congViecChiTiet[0]?.congViec.saoCongViec === 5 ? (
+                    <Fragment>
+                      <i className="fa fa-star text-warning ml-2"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                      <i className="fa fa-star text-warning ml-1"></i>
+                    </Fragment>
+                  ) : congViecChiTiet[0]?.congViec.saoCongViec === 0 ? (
+                    <i className="ml-2">No star</i>
+                  ) : (
+                    ""
+                  )}
+                  <span className="text-warning ml-1 mr-1">{congViecChiTiet[0]?.congViec.saoCongViec}</span>
+                  <span className="text-secondary mr-2">({congViecChiTiet[0]?.congViec.danhGia})</span>
                 </span>
                 <p className="m-0 p-0 text-black-50 ml-2">10 Orders in Queue</p>
                 <div className="">
@@ -61,21 +101,17 @@ function JobDetail() {
                 <img
                   width={28}
                   height={28}
-                  src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-1/305285541_120761034077564_5858501294288302818_n.jpg?stp=cp0_dst-jpg_p80x80&_nc_cat=104&ccb=1-7&_nc_sid=c6021c&_nc_ohc=r8wdpV4xph4AX937lMa&_nc_ht=scontent.fsgn5-3.fna&oh=00_AT92a2pL2_hm0O45WJQIoQ5UCb5xz8TrBHZq1EO27vib2A&oe=63450B99"
+                  src="https://cdn.tgdd.vn/2020/09/GameApp/video-star-ung-dung-chinh-sua-tao-hieu-ung-video-logo-11-09-2020-200x200.png"
                   alt=""
                   className="rounded-circle"
                 />
                 <h6 className="text-secondary ml-2 mb-0">
                   <span className="text-dark mr-2 font-weight-bold">Buyers keep returning!</span>
-                  hungdev1108 has an exceptional number of repeat buyers.
+                  {congViecChiTiet[0]?.tenNguoiTao} has an exceptional number of repeat buyers.
                 </h6>
               </div>
               <div className="text-center mt-4">
-                <img
-                  width={"90%"}
-                  src="https://images.unsplash.com/photo-1610360655260-decd32e267aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                  alt="1"
-                />
+                <img width={"90%"} src={congViecChiTiet[0]?.congViec.hinhAnh} alt="" />
               </div>
 
               {/* Detail Job DESC */}
@@ -83,10 +119,8 @@ function JobDetail() {
                 <h4 className="mt-5">About This Gig</h4>
                 <div className="h6 title__ratedSeller">Top Rated Seller with all positive reviews</div>
                 <p className="mt-3 text-secondary h6" style={{ lineHeight: 1.5 }}>
-                  <span className="mb-3 d-block">Hello,</span>
-                  Want a custom website build for your business? Or Having trouble In recognizing or fixing the
-                  Issues/bugs in your existing website/blog. It is not a problem because I'm here to fix any Issues In
-                  HTML, CSS, Bootstrap Jquery, Javascript, PHP or database(Mysql/Oracle)
+                  {/* <span className="mb-3 d-block">Hello,</span> */}
+                  {congViecChiTiet[0]?.congViec.moTa}
                 </p>
                 <div className="mt-3">
                   <span className="mb-3 d-block font-weight-bold">Things I ofter:</span>
@@ -134,16 +168,10 @@ function JobDetail() {
               <h4 className="mt-5">About The Seller</h4>
               <div className="about__seller d-flex align-items-center mt-4">
                 <div className="about__seller-avatar">
-                  <img
-                    width={90}
-                    height={90}
-                    src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-1/297993792_2335625759933235_726241504302813939_n.jpg?stp=c0.42.148.148a_dst-jpg_p148x148&_nc_cat=103&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=7om80uHN7Y4AX8nI3bV&_nc_ht=scontent.fsgn5-12.fna&oh=00_AT91UvWBgQHYAkwCuqXeN6-3XAu-MOtG2Vgt00Evfix-5A&oe=6346A05C"
-                    alt=""
-                    className="rounded-circle"
-                  />
+                  <img width={90} height={90} src={congViecChiTiet[0]?.avatar} alt="" className="rounded-circle" />
                 </div>
                 <div className="about__seller-info ml-4">
-                  <h6 className="m-0 font-weight-bold">hungdev1108</h6>
+                  <h6 className="m-0 font-weight-bold">{congViecChiTiet[0]?.tenNguoiTao}</h6>
                   <span className="text-secondary">Web Developer</span>
                   <span className="d-block">
                     <i className="fa fa-star text-warning"></i>
@@ -154,6 +182,7 @@ function JobDetail() {
                     <span className="text-warning ml-1 mr-1">5</span>
                     <span className="text-secondary">(999)</span>
                   </span>
+                  <button className="btn btn-outline-secondary mt-1">Contact Me</button>
                 </div>
               </div>
 
@@ -182,9 +211,9 @@ function JobDetail() {
               </div>
 
               {/* REVIEWS */}
-              <div className="d-flex justify-content-between align-items-end">
-                <div className="mt-5 d-flex align-items-center">
-                  <h4 className="m-0 mr-2"> 335 Reviews</h4>
+              <div className="jobDetail__review d-flex justify-content-between align-items-end ">
+                <div className="jobDetail__review--right mt-5 d-flex align-items-center">
+                  <h4 className="m-0 mr-2">335 Reviews</h4>
                   <i className="fa fa-star text-warning"></i>
                   <i className="fa fa-star text-warning ml-1"></i>
                   <i className="fa fa-star text-warning ml-1"></i>
@@ -192,7 +221,7 @@ function JobDetail() {
                   <i className="fa fa-star text-warning ml-1"></i>
                   <span className="text-warning ml-1 mr-1">5</span>
                 </div>
-                <div>
+                <div className="jobDetail__review--left">
                   <p className="m-0">
                     Sort by
                     <span className="font-weight-bold ml-2">
@@ -202,22 +231,22 @@ function JobDetail() {
                 </div>
               </div>
               {/* 5* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-primary">5 Stars (330)</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={95} />
                 </div>
-                <div className="ml-5">
+                <div className="ml-5 rating__desc">
                   <span className="font-weight-bold">Rating Breakdown</span>
                 </div>
               </div>
               {/* 4* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-primary">4 Stars (5)</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={5} />
                 </div>
-                <div className="ml-5">
+                <div className="ml-5 rating__desc">
                   <span className="text-secondary d-flex align-items-center">
                     Seller communication level
                     <span className="ml-3">5</span>
@@ -226,12 +255,12 @@ function JobDetail() {
                 </div>
               </div>
               {/* 3* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">3 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
                 </div>
-                <div className="ml-5 ">
+                <div className="ml-5 rating__desc ">
                   <span className="text-secondary d-flex align-items-center">
                     Recommend to a friend
                     <span className="ml-3">5</span>
@@ -240,12 +269,12 @@ function JobDetail() {
                 </div>
               </div>
               {/* 2* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">2 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
                 </div>
-                <div className="ml-5 ">
+                <div className="ml-5 rating__desc ">
                   <span className="text-secondary d-flex align-items-center">
                     Service as described
                     <span className="ml-3">5</span>
@@ -254,7 +283,7 @@ function JobDetail() {
                 </div>
               </div>
               {/* 1* */}
-              <div className="d-flex align-items-end mt-4">
+              <div className="d-flex align-items-end mt-4 seller__progressBar">
                 <div className="">
                   <h6 className="text-black-50">1 Stars</h6>
                   <ProgressBar style={{ height: "10px", width: "20rem" }} variant="warning" now={0} />
@@ -332,7 +361,7 @@ function JobDetail() {
                       <FloatingLabel controlId="floatingTextarea" className="">
                         <Form.Control as="textarea" placeholder="Leave a comment here..." />
                       </FloatingLabel>
-                      <button className="btn btn-primary mb-3">Add Comment</button>
+                      <button className="btn btn-primary mb-5">Add Comment</button>
                     </div>
                   </div>
                 </div>
@@ -344,7 +373,7 @@ function JobDetail() {
                   <div className="p-3">
                     <div className="d-flex justify-content-between">
                       <h5>Basic</h5>
-                      <p className="h5 text-muted">$500</p>
+                      <p className="h5 text-muted">${(congViecChiTiet[0]?.congViec.giaTien * 50) / 100}</p>
                     </div>
                     <p className="disabled h6 my-4" style={{ color: "#a8abae" }}>
                       Create web application for your business
@@ -367,7 +396,9 @@ function JobDetail() {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">Continue ($500)</button>
+                    <button className="btn-lg btn btn-success btn-block my-4">
+                      Continue (${(congViecChiTiet[0]?.congViec.giaTien * 50) / 100})
+                    </button>
                     <div role="button" className="h5 text-success text-center">
                       Compare Package
                     </div>
@@ -377,7 +408,7 @@ function JobDetail() {
                   <div className="p-3">
                     <div className="d-flex justify-content-between">
                       <h5>Standard</h5>
-                      <p className="h5 text-muted">$1,000</p>
+                      <p className="h5 text-muted">${congViecChiTiet[0]?.congViec.giaTien}</p>
                     </div>
                     <p className="disabled h6 my-4" style={{ color: "#a8abae" }}>
                       Create web application for your business
@@ -400,7 +431,9 @@ function JobDetail() {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">Continue ($1,000)</button>
+                    <button className="btn-lg btn btn-success btn-block my-4">
+                      Continue (${congViecChiTiet[0]?.congViec.giaTien})
+                    </button>
                     <div role="button" className="h5 text-success text-center">
                       Compare Package
                     </div>
@@ -410,7 +443,7 @@ function JobDetail() {
                   <div className="p-3">
                     <div className="d-flex justify-content-between">
                       <h5>Premium</h5>
-                      <p className="h5 text-muted">$1,999</p>
+                      <p className="h5 text-muted">${congViecChiTiet[0]?.congViec.giaTien * 2}</p>
                     </div>
                     <p className="disabled h6 my-4" style={{ color: "#a8abae" }}>
                       Build a quality website system
@@ -433,7 +466,9 @@ function JobDetail() {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">Continue ($1,999)</button>
+                    <button className="btn-lg btn btn-success btn-block my-4">
+                      Continue (${congViecChiTiet[0]?.congViec.giaTien * 2})
+                    </button>
                     <div role="button" className="h5 text-success text-center">
                       Compare Package
                     </div>

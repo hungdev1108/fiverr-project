@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
-import HomeSlider from "./HomeSlider/HomeSlider";
-import "./Home.scss";
 import PopularService from "Pages/Home/PopularService/PopularService";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import "./Home.scss";
+import HomeSlider from "./HomeSlider/HomeSlider";
+import Marketplace from "./Marketplace/Marketplace";
 import Selling from "./Selling/Selling";
 import Testimonial from "./Testimonial/Testimonial";
-import Marketplace from "./Marketplace/Marketplace";
-import { useDispatch } from "react-redux";
-import { getChiTietLoaiCongViecAction } from "store/actions/ManagerJobAction";
 
 function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getChiTietLoaiCongViecAction(1));
+    // dispatch(getChiTietLoaiCongViecAction(1));
   }, []);
 
   return (

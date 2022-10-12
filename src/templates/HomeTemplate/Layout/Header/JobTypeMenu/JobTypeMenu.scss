@@ -1,3 +1,4 @@
+@import "../../../../../assets/scss/App.scss";
 #mainJob {
   .main__job--container {
     border-bottom: 1px solid #dee2e6;
@@ -8,15 +9,58 @@
     justify-content: flex-start;
     div {
       text-align: center;
-      a {
+      .main__job--menu {
         font-weight: 600;
-        padding: 0 1.5rem;
         text-decoration: none;
         text-align: center;
         color: #7a7d85;
+        font-size: 1.2rem;
         &:hover {
           color: #1dbf73;
         }
+
+        @include tablet-md {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        @include mobile-xs {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .menuSubLinks {
+      position: absolute;
+      li {
+        list-style: none;
+      }
+    }
+    @include tablet-md {
+      padding: 0.5rem 0.5rem 1rem 0.5rem !important;
+    }
+  }
+  .row {
+    .jobItem {
+      @include tablet-md {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+.tooltip {
+  &.show {
+    opacity: 1;
+  }
+  .tooltip-inner {
+    background-color: #fff !important;
+    -webkit-box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.6);
+    .list-group-item {
+      border: 1px solid rgba(0, 0, 0, 0);
+      border-radius: 0.5rem;
+      &:hover {
+        background-color: rgba(223, 223, 223, 0.3);
       }
     }
   }

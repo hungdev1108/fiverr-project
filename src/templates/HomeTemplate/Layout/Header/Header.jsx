@@ -1,13 +1,22 @@
-import { history } from "App";
 import { logoSvg } from "assets/images/svgImage";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useHistory } from "react-router-dom";
 import "./Header.scss";
 import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
 
 function Header(props) {
+  const history = useHistory();
+  const [valueSearch, setValueSearch] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (valueSearch !== "") history.push(`/listJob/?valueSearch=${valueSearch}`);
+    setValueSearch("");
+  };
+
   return (
     <header id="header">
       <Navbar expand="xl" variant="light">
@@ -16,19 +25,21 @@ function Header(props) {
             <Nav.Link href="/">{logoSvg}</Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Form className="d-flex search">
+          <Navbar.Collapse className="showNav" id="basic-navbar-nav">
+            <Form onSubmit={handleSubmit} className="d-flex search">
               <Form.Control
                 type="search"
                 placeholder="What service are you looking today?"
                 className="inputSearch me-2"
                 aria-label="Search"
+                value={valueSearch}
+                onChange={(e) => setValueSearch(e.target.value)}
               />
               <Button className="btnSearch">
                 <i className="fas fa-search"></i>
               </Button>
             </Form>
-            <Nav className="ml-auto align-items-lg-center">
+            <Nav className="ml-auto align-items-lg-center navCustom">
               <Nav.Link href="#">Fiverr Business</Nav.Link>
               <Nav.Link href="#">Explore</Nav.Link>
               <Nav.Link href="#">English</Nav.Link>

@@ -1,2 +1,20 @@
+@import "../../assets/scss/App.scss";
+
 #listJob {
+  .listJob__filter--nav {
+    @include tablet-md {
+      display: none !important;
+    }
+  }
+  .resultSearch {
+    @include tablet-md {
+      padding: 0 1.3rem;
+      margin-bottom: 1rem;
+      .search__title {
+        @include tablet-md {
+          font-size: 2.2rem !important;
+        }
+      }
+    }
+  }
 }

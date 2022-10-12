@@ -1,43 +1,56 @@
-import { Pagination } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getListJobAction } from "store/actions/ManagerJobAction";
-import JobItem from "./JobItem/JobItem";
 import { DownOutlined } from "@ant-design/icons";
-import "./ListJob.scss";
+import { Pagination } from "antd";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { getCongViecTheoChiTietLoaiAction, getDanhSachCongViecTheoTenAction } from "store/actions/ManagerJobAction";
+import JobItem from "./JobItem/JobItem";
+import "./ListJob.scss";
 
 function ListJob() {
   const location = useLocation();
   let urlParams = new URLSearchParams(location.search);
+  const { danhSachCongViec } = useSelector((state) => state.ManagerJobReducer);
+
+  console.log("danhSachCongViec:", danhSachCongViec);
+
   const valueSearch = urlParams.get("valueSearch");
   const maChiTietLoai = urlParams.get("maChiTietLoai");
 
-  console.log(valueSearch);
+  //   console.log(valueSearch);
 
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const [pageSize] = useState(10);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (maChiTietLoai) dispatch(getCongViecTheoChiTietLoaiAction(maChiTietLoai));
+    if (valueSearch) dispatch(getDanhSachCongViecTheoTenAction(valueSearch));
+  }, []);
+
   // Config useParams
 
-  //   const renderJob = () => {
-  //     return lstJob?.map((job, index) => {
-  //       return (
-  //         <div key={index} className="col-12 col-md-6 col-lg-3 mb-5">
-  //           <JobItem job={job} />
-  //         </div>
-  //       );
-  //     });
-  //   };
+  const renderJob = () => {
+    return danhSachCongViec?.map((job, index) => {
+      return (
+        <div key={index} className="col-12 col-md-6 col-lg-3 mb-5">
+          <JobItem job={job} />
+        </div>
+      );
+    });
+  };
+
+  const resultSearch = () => {
+    if (maChiTietLoai) {
+      return <></>;
+    }
+    if (valueSearch) {
+      return <h1 className="search__title">Results for "{valueSearch}"</h1>;
+    }
+  };
 
   return (
     <section id="listJob" className="mt-4">
       <div className="container">
-        <div className="resultSearch">
-          <h1>Result for "html"</h1>
-        </div>
+        <div className="resultSearch">{resultSearch()}</div>
         <div className="listJob__filter--nav mt-4 mb-5 d-flex justify-content-between align-items-center">
           <div className="filter__nav-left">
             <button className="btn btn-secondary bg-white border text-secondary mr-3 mb-3" type="button">
@@ -82,7 +95,9 @@ function ListJob() {
             </div>
           </div>
         </div>
-        <div className="listJob__content">{/* <div className="row">{renderJob()}</div> */}</div>
+        <div className="listJob__content">
+          <div className="row">{renderJob()}</div>
+        </div>
         <Pagination
           style={{
             display: "flex",
