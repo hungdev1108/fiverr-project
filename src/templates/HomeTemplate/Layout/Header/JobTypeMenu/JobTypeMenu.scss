@@ -1,12 +1,14 @@
 @import "../../../../../assets/scss/App.scss";
 #mainJob {
   .main__job--container {
+    // overflow: hidden !important;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
   }
   .main__job--content {
-    display: flex;
-    justify-content: flex-start;
+    // overflow: hidden !important;
+    // display: flex;
+    // justify-content: flex-start;
     div {
       text-align: center;
       .main__job--menu {
@@ -22,6 +24,7 @@
         @include tablet-md {
           display: flex;
           justify-content: space-between;
+          align-items: center;
         }
 
         @include mobile-xs {
@@ -36,8 +39,49 @@
         list-style: none;
       }
     }
-    @include tablet-md {
-      padding: 0.5rem 0.5rem 1rem 0.5rem !important;
+    .slick-slider {
+      .slick-prev {
+        width: 2rem;
+        height: 2rem;
+        z-index: 9999;
+        left: 0;
+        color: #fff;
+        background-color: transparent;
+        &::before {
+          line-height: 2rem;
+          font-size: 1.8rem;
+          color: #1dbf73;
+        }
+      }
+      .slick-next {
+        width: 2rem;
+        height: 2rem;
+        z-index: 9999;
+        right: 0;
+        color: #fff;
+        background-color: transparent;
+        &::before {
+          line-height: 2rem;
+          font-size: 1.8rem;
+          color: #1dbf73;
+        }
+      }
+
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            @include tablet-md {
+              padding: 0 2rem;
+            }
+
+            .jobItem {
+              @include tablet-md {
+                max-width: none;
+              }
+            }
+          }
+        }
+      }
     }
   }
   .row {

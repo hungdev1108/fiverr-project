@@ -35,7 +35,7 @@ function Header(props) {
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
               />
-              <Button className="btnSearch">
+              <Button type="submit" className="btnSearch">
                 <i className="fas fa-search"></i>
               </Button>
             </Form>

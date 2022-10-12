@@ -5,6 +5,58 @@ import { Link, useHistory } from "react-router-dom";
 
 import { getJobTypeMenuAction } from "store/actions/ManagerJobAction";
 import "./JobTypeMenu.scss";
+import Slider from "react-slick";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return <div className={className} style={{ ...style, display: "block" }} onClick={onClick} />;
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return <div className={className} style={{ ...style, display: "block" }} onClick={onClick} />;
+}
+
+const settingsJobListJobType = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: false,
+        dots: false,
+        initialSlide: 0,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: false,
+        initialSlide: 0,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        initialSlide: 0,
+      },
+    },
+  ],
+};
 
 function JobTypeMenu(props) {
   const dispatch = useDispatch();
@@ -60,42 +112,71 @@ function JobTypeMenu(props) {
     dispatch(getJobTypeMenuAction());
   }, []);
 
+  //   <Slider {...settings}>
   const renderJobTypeMenu = () => {
-    return menuLoaiCongViec.map((jobItem, index) => {
-      return (
-        <div className="jobItem col-sm-6 col-lg" key={index}>
-          <div>
-            <OverlayTrigger
-              placement="bottom"
-              show={showSubMenu === jobItem.id ? true : false}
-              delay={{ show: 250, hide: 400 }}
-              overlay={(props) => renderTooltip(props, jobItem)}
-            >
-              <div
-                role="button"
-                style={{ color: showSubMenu === jobItem.id && "#1dbf73" }}
-                onMouseLeave={() => setShowSubMenu(false)}
-                onMouseMove={() => setShowSubMenu(jobItem.id)}
-                className="main__job--menu h6 m-0"
-                onClick={() => {
-                  history.push(`/jobListJobType/${jobItem.id}`);
-                }}
+    return (
+      <Slider {...settingsJobListJobType}>
+        {menuLoaiCongViec.map((jobItem, index) => {
+          return (
+            <div className="jobItem col-sm-6 col-lg" key={index}>
+              <OverlayTrigger
+                placement="bottom"
+                show={showSubMenu === jobItem.id ? true : false}
+                delay={{ show: 250, hide: 400 }}
+                overlay={(props) => renderTooltip(props, jobItem)}
               >
-                <span className="">{jobItem.tenLoaiCongViec}</span>
-                <i className="ml-2 fa fa-chevron-down icon-dropdown"></i>
-              </div>
-            </OverlayTrigger>
-          </div>
-        </div>
-      );
-    });
+                <div
+                  role="button"
+                  style={{ color: showSubMenu === jobItem.id && "#1dbf73" }}
+                  onMouseLeave={() => setShowSubMenu(false)}
+                  onMouseMove={() => setShowSubMenu(jobItem.id)}
+                  className="main__job--menu h6 m-0"
+                  onClick={() => {
+                    history.push(`/jobListJobType/${jobItem.id}`);
+                  }}
+                >
+                  <span className="">{jobItem.tenLoaiCongViec}</span>
+                  <i className="ml-2 fa fa-chevron-down icon-dropdown"></i>
+                </div>
+              </OverlayTrigger>
+            </div>
+          );
+        })}
+      </Slider>
+    );
+    // return menuLoaiCongViec.map((jobItem, index) => {
+    //   return (
+    //     <div className="jobItem col-sm-6 col-lg" key={index}>
+    //       <OverlayTrigger
+    //         placement="bottom"
+    //         show={showSubMenu === jobItem.id ? true : false}
+    //         delay={{ show: 250, hide: 400 }}
+    //         overlay={(props) => renderTooltip(props, jobItem)}
+    //       >
+    //         <div
+    //           role="button"
+    //           style={{ color: showSubMenu === jobItem.id && "#1dbf73" }}
+    //           onMouseLeave={() => setShowSubMenu(false)}
+    //           onMouseMove={() => setShowSubMenu(jobItem.id)}
+    //           className="main__job--menu h6 m-0"
+    //           onClick={() => {
+    //             history.push(`/jobListJobType/${jobItem.id}`);
+    //           }}
+    //         >
+    //           <span className="">{jobItem.tenLoaiCongViec}</span>
+    //           <i className="ml-2 fa fa-chevron-down icon-dropdown"></i>
+    //         </div>
+    //       </OverlayTrigger>
+    //     </div>
+    //   );
+    // });
   };
 
   return (
     <section className="main__job" id="mainJob">
-      <Container className="main__job--container">
-        <Row className="main__job--content px-2 py-4">{renderJobTypeMenu()}</Row>
-      </Container>
+      <div className="main__job--container">
+        <div className="main__job--content px-2 py-4">{renderJobTypeMenu()}</div>
+      </div>
     </section>
   );
 }

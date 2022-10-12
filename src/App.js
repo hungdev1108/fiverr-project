@@ -9,6 +9,7 @@ import SignUp from "Pages/SignUp/SignUp";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomeTemplate from "templates/HomeTemplate/HomeTemplate";
 import "./App.css";
+import Loading from "components/Loading/Loading";
 // Lazy load - Code Splitting
 
 // const Signin = React.lazy(() => import("./features/authentication/pages/Signin"));
@@ -17,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Loading /> */}
+        <Loading />
         <Switch>
           {/* Components */}
           <HomeTemplate path="/home" exact Component={Home} />
