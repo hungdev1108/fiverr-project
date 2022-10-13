@@ -3,7 +3,7 @@ const { Route, Redirect } = require("react-router-dom");
 const checkAuth = () => {
   // check nếu localstorage chưa có token, chưa login => vào
   // localstorage có token  => login => đẩy qua trang home
-  if (!localStorage.getItem("token")) {
+  if (!localStorage.getItem("accessToken")) {
     return true;
   }
   return false;
@@ -18,7 +18,7 @@ export const AuthRoute = (props) => {
 };
 
 const checkLogin = () => {
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("accessToken")) {
     return true;
   }
   return false;

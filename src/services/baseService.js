@@ -24,7 +24,7 @@ export class baseService {
       data: model,
       headers: {
         tokenCybersoft: TOKEN_CYBER, // JWT
-        // token: "Bearer " + localStorage.getItem(TOKEN),
+        token: "Bearer " + localStorage.getItem(TOKEN),
       },
     });
   };

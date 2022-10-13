@@ -19,7 +19,7 @@ function JobDetail(props) {
   const { congViecChiTiet } = useSelector((state) => state.ManagerJobReducer);
   const { danhSachBinhLuan } = useSelector((state) => state.ManagerCommentReducer);
 
-  console.log("congViecChiTiet:", congViecChiTiet);
+  //   console.log("congViecChiTiet:", congViecChiTiet);
   console.log("danhSachBinhLuan:", danhSachBinhLuan);
 
   useEffect(() => {

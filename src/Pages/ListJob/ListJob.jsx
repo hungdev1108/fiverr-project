@@ -12,7 +12,7 @@ function ListJob() {
   let urlParams = new URLSearchParams(location.search);
   const { danhSachCongViec } = useSelector((state) => state.ManagerJobReducer);
 
-  console.log("danhSachCongViec:", danhSachCongViec);
+  //   console.log("danhSachCongViec:", danhSachCongViec);
 
   const valueSearch = urlParams.get("valueSearch");
   const maChiTietLoai = urlParams.get("maChiTietLoai");

@@ -17,7 +17,7 @@ export const UserManagerReducer = (state = stateDefault, action) => {
     case SIGNIN_ACTION: {
       const { infoSignin } = action;
       localStorage.setItem(USER_LOGIN, JSON.stringify(infoSignin));
-      localStorage.setItem(TOKEN, infoSignin.accessToken);
+      localStorage.setItem(TOKEN, infoSignin.token);
       return { ...state, userSignin: infoSignin };
     }
     case BOOKING_JOB: {
