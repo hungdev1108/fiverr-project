@@ -1,12 +1,16 @@
 import { logoSvg } from "assets/images/svgImage";
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Fragment, useState } from "react";
+import { Button, Form, NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import "./Header.scss";
 import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
+import _ from "lodash";
+import { ConfirmSignOut } from "components/Notifications/Notifications";
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
 
 function Header(props) {
   const history = useHistory();
@@ -15,6 +19,69 @@ function Header(props) {
     e.preventDefault();
     if (valueSearch !== "") history.push(`/listJob/?valueSearch=${valueSearch}`);
     setValueSearch("");
+  };
+
+  const { userSignin } = useSelector((state) => state.UserManagerReducer);
+  //   console.log({ userSignin });
+
+  const checkSignIn = () => {
+    if (_.isEmpty(userSignin)) {
+      return (
+        <Fragment>
+          <Nav.Link href="/signin">Sign in</Nav.Link>
+          <Nav.Link href="/signup">
+            <button className="btnJoin">Join</button>
+          </Nav.Link>
+        </Fragment>
+      );
+    }
+
+    return (
+      <Fragment>
+        <NavDropdown
+          style={{ zIndex: "99999" }}
+          title=<span className="userLogin">
+            <UserOutlined className="mr-1" />
+            Hi! {userSignin.user?.name}
+            <DownOutlined className="ml-2 font" />
+          </span>
+          id="dropdown-account"
+        >
+          <NavDropdown.Item
+            className="text-secondary"
+            onClick={() => {
+              history.push(`/admin`);
+            }}
+          >
+            Admin
+          </NavDropdown.Item>
+
+          <NavDropdown.Item
+            className="text-secondary"
+            onClick={() => {
+              history.push(`/profile`);
+            }}
+          >
+            Profile
+          </NavDropdown.Item>
+
+          <NavDropdown.Divider />
+          <NavDropdown.Item
+            className="text-secondary"
+            onClick={() => {
+              ConfirmSignOut(history);
+            }}
+          >
+            <div className="d-flex align-items-center">
+              <div className="mr-2">Logout</div>
+              <div className="">
+                <i className="fas fa-sign-out-alt"></i>
+              </div>
+            </div>
+          </NavDropdown.Item>
+        </NavDropdown>
+      </Fragment>
+    );
   };
 
   return (
@@ -44,35 +111,7 @@ function Header(props) {
               <Nav.Link href="#">Explore</Nav.Link>
               <Nav.Link href="#">English</Nav.Link>
               <Nav.Link href="#">Become a Seller</Nav.Link>
-              <Nav.Link href="/signin">Sign in</Nav.Link>
-              <Nav.Link href="/signup">
-                <button className="btnJoin">Join</button>
-              </Nav.Link>
-              {/* <NavDropdown
-                title=<span className="userLogin">
-                  <UserOutlined className="mr-1" />
-                  Hi! Admin
-                  <DownOutlined className="ml-2 font" />
-                </span>
-                id="dropdown-account"
-              >
-                <NavLink to="/admin/adduser">
-                  <NavDropdown.Item className=""> Admin</NavDropdown.Item>
-                </NavLink>
-
-                <NavLink to="/profile">
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
-                </NavLink>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  onClick={() => {
-                    localStorage.clear();
-                    window.location.reload();
-                  }}
-                >
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown> */}
+              <Fragment>{checkSignIn()}</Fragment>
             </Nav>
           </Navbar.Collapse>
         </Container>

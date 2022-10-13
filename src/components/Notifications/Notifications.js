@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import { useHistory } from "react-router-dom";
 
 import { TOKEN, USER_LOGIN } from "utils/settings/config";
 
@@ -35,14 +36,14 @@ export const signInError = (noti) => {
   });
 };
 
-export const ConfirmLogout = () => {
+export const ConfirmSignOut = (history) => {
   confirm({
     title: "THÔNG BÁO!",
     content: "BẠN CÓ MUỐN ĐĂNG XUẤT?",
     onOk() {
       localStorage.removeItem(USER_LOGIN);
       localStorage.removeItem(TOKEN);
-      //   history.push("/home");
+      history.push("/");
       window.location.reload();
     },
     onCancel() {},

@@ -40,7 +40,7 @@
       a {
         text-decoration: none;
       }
-      right: 0;
+      left: 25%;
     }
   }
   .navbar-nav {
@@ -110,6 +110,13 @@
     &:hover {
       background-color: #1dbf73;
       color: #fff !important;
+    }
+  }
+
+  .dropdown-item {
+    padding: 0.25rem 2rem !important;
+    &:active {
+      background-color: #1cbd72 !important;
     }
   }
 }
