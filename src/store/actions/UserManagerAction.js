@@ -1,12 +1,9 @@
-import { BookingJobSuccess, RegisterSuccess } from "components/Notifications/Notifications";
-import { useHistory } from "react-router-dom";
+import { BookingJobSuccess, SignUpError } from "components/Notifications/Notifications";
 import { userManagerServices } from "services/UserManagerServices";
 import { BOOKING_JOB, SET_USER_INFO, SIGNIN_ACTION, SIGNUP_ACTION } from "store/types/UserManagerType";
-
 import { displayLoadingAction, hideLoadingAction } from "./LoadingActions";
 
-export const SignInAction = (infoSignin, signInError) => {
-  const history = useHistory();
+export const SignInAction = (infoSignin, signInError, history) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
@@ -17,8 +14,8 @@ export const SignInAction = (infoSignin, signInError) => {
           type: SIGNIN_ACTION,
           infoSignin: result.data.content,
         });
-        dispatch(hideLoadingAction);
         history.goBack();
+        // console.log(infoSignin);
       }
 
       //   console.log("Login Action:", result);
@@ -30,7 +27,7 @@ export const SignInAction = (infoSignin, signInError) => {
   };
 };
 
-export const SignUpAction = (infoSignup, registerError) => {
+export const SignUpAction = (infoSignup, SignUpSuccess, history) => {
   return async (dispatch) => {
     try {
       const result = await userManagerServices.signupSystem(infoSignup);
@@ -39,15 +36,13 @@ export const SignUpAction = (infoSignup, registerError) => {
           type: SIGNUP_ACTION,
           infoSignup: result.data.content,
         });
-        dispatch(displayLoadingAction);
-        RegisterSuccess();
-        dispatch(hideLoadingAction);
+        SignUpSuccess(history);
       }
 
       //   console.log("Register Action:", result);
     } catch (error) {
       dispatch(hideLoadingAction);
-      registerError(error.response?.data.content);
+      SignUpError(error.response?.data.content);
       console.log("error", error);
     }
   };
