@@ -47,14 +47,20 @@ function Header(props) {
           </span>
           id="dropdown-account"
         >
-          <NavDropdown.Item
-            className="text-secondary"
-            onClick={() => {
-              history.push(`/admin`);
-            }}
-          >
-            Admin
-          </NavDropdown.Item>
+          {userSignin.user?.role === "ADMIN" ? (
+            <NavDropdown.Item
+              className="text-secondary"
+              onClick={() => {
+                history.push(`/admin`);
+              }}
+            >
+              Admin
+            </NavDropdown.Item>
+          ) : (
+            <NavDropdown.Item style={{ opacity: 0.5 }} disabled="disabled" className="text-black-50">
+              Admin
+            </NavDropdown.Item>
+          )}
 
           <NavDropdown.Item
             className="text-secondary"
