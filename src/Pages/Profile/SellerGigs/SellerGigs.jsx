@@ -1,7 +1,6 @@
 import { Card } from "antd";
-import { join } from "lodash";
+import { ConfirmDeleteHiredJob } from "components/Notifications/Notifications";
 import React, { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getHireJobListAction } from "store/actions/UserManagerAction";
 import "./SellerGigs.scss";
@@ -32,7 +31,12 @@ export default function SellerGigs(props) {
             />
             <p>{job.congViec.moTa}</p>
           </div>
-          <button className="delete-job-card">X</button>
+          <button
+            onClick={() => ConfirmDeleteHiredJob(job.id, dispatch)}
+            className="delete-job-card"
+          >
+            X
+          </button>
         </Card>
       );
     });

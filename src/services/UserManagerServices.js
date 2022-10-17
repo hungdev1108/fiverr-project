@@ -50,6 +50,10 @@ export class UserManagerServices extends baseService {
   bookingJob = (infoBooking) => {
     return this.post(`api/thue-cong-viec`, infoBooking);
   };
+
+  deleteHireJob = (id)=>{
+    return this.delete(`api/thue-cong-viec/${id}`)
+  }
 }
 
 export const userManagerServices = new UserManagerServices();

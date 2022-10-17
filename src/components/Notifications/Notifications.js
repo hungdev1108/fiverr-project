@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import { useHistory } from "react-router-dom";
+import { deleteHireJobAction } from "store/actions/UserManagerAction";
 
 import { TOKEN, USER_LOGIN } from "utils/settings/config";
 
@@ -47,6 +48,26 @@ export const ConfirmSignOut = (history) => {
       window.location.reload();
     },
     onCancel() {},
+  });
+};
+
+export const ConfirmDeleteHiredJob = (id, dispatch) => {
+  confirm({
+    title: "THÔNG BÁO!",
+    content: "BẠN CÓ MUỐN XOÁ CÔNG VIỆC ĐÃ THUÊ?",
+    onOk() {
+      dispatch(deleteHireJobAction(id))
+    },
+    onCancel() {},
+  });
+};
+
+export const deleteHiredJobSuccess = () => {
+  Modal.success({
+    title: "XOÁ CÔNG VIỆC THÀNH CÔNG!",
+    content: "xOÁ CÔNG VIỆC THÀNH CÔNG!",
+    onOk() {
+    },
   });
 };
 

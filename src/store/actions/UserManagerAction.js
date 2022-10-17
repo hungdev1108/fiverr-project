@@ -1,6 +1,15 @@
-import { BookingJobSuccess, SignUpError } from "components/Notifications/Notifications";
+import {
+  BookingJobSuccess,
+  deleteHiredJobSuccess,
+  SignUpError,
+} from "components/Notifications/Notifications";
 import { userManagerServices } from "services/UserManagerServices";
-import { BOOKING_JOB, SET_USER_INFO, SIGNIN_ACTION, SIGNUP_ACTION } from "store/types/UserManagerType";
+import {
+  BOOKING_JOB,
+  SET_USER_INFO,
+  SIGNIN_ACTION,
+  SIGNUP_ACTION,
+} from "store/types/UserManagerType";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingActions";
 
 export const SignInAction = (infoSignin, signInError, history) => {
@@ -110,6 +119,22 @@ export const bookingJobAction = (infoBooking) => {
       //   console.log("Register Action:", result);
     } catch (error) {
       dispatch(hideLoadingAction);
+      // registerError(error.response?.data.content);
+      console.log("error", error);
+    }
+  };
+};
+
+export const deleteHireJobAction = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(displayLoadingAction);
+      await userManagerServices.deleteHireJob(id);
+      dispatch(displayLoadingAction);
+      deleteHiredJobSuccess();
+      dispatch(hideLoadingAction);
+      dispatch(getHireJobListAction())
+    } catch (error) {
       // registerError(error.response?.data.content);
       console.log("error", error);
     }

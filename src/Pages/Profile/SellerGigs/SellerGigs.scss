@@ -33,8 +33,12 @@
     .job-card{
       margin-bottom: 20px;
       border: 1px solid #ddd;
-      .image-job-card{
-        width: 150px;
+      .content{
+        .image-job-card{
+          margin-right: 10px;
+          width: 25%;
+          height: 100%;
+        }
       }
       .delete-job-card{
         position: absolute;
