@@ -1,3 +1,4 @@
+import { InfoBooking } from "_core/models/InfoBooking";
 import { baseService } from "./baseService";
 
 export class UserManagerServices extends baseService {
@@ -47,7 +48,7 @@ export class UserManagerServices extends baseService {
     return this.get(`api/thue-cong-viec/lay-danh-sach-da-thue`);
   };
 
-  bookingJob = (infoBooking) => {
+  bookingJob = (infoBooking = new InfoBooking()) => {
     return this.post(`api/thue-cong-viec`, infoBooking);
   };
 }

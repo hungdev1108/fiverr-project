@@ -1,6 +1,7 @@
 import { BookingJobSuccess, SignUpError } from "components/Notifications/Notifications";
 import { userManagerServices } from "services/UserManagerServices";
 import { BOOKING_JOB, SET_USER_INFO, SIGNIN_ACTION, SIGNUP_ACTION } from "store/types/UserManagerType";
+import { InfoBooking } from "_core/models/InfoBooking";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingActions";
 
 export const SignInAction = (infoSignin, signInError, history) => {
@@ -98,16 +99,16 @@ export const getHireJobListAction = () => {
   };
 };
 
-export const bookingJobAction = (infoBooking) => {
+export const bookingJobAction = (infoBooking = new InfoBooking()) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       const result = await userManagerServices.bookingJob(infoBooking);
+      console.log(result);
+
       dispatch(displayLoadingAction);
       BookingJobSuccess();
       dispatch(hideLoadingAction);
-
-      //   console.log("Register Action:", result);
     } catch (error) {
       dispatch(hideLoadingAction);
       // registerError(error.response?.data.content);

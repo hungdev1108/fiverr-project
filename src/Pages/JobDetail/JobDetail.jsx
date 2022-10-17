@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { getBinhLuanTheoMaCongViecAction } from "store/actions/ManagerCommentAction";
 import { getCongViecChiTietAction } from "store/actions/ManagerJobAction";
+import { bookingJobAction } from "store/actions/UserManagerAction";
+import { InfoBooking } from "_core/models/InfoBooking";
 import "./JobDetail.scss";
 
 const { TabPane } = Tabs;
@@ -15,12 +17,39 @@ function JobDetail(props) {
 
   const jobId = match.params.jobId;
   //   console.log(jobId);
+  const { userSignin } = useSelector((state) => state.UserManagerReducer);
+  //   console.log({ userSignin });
+
+  const userId = userSignin.user?.id;
+
+  const getToDay = () => {
+    const today = new Date();
+    const yyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + dd;
+
+    const formattedToday = dd + "/" + mm + "/" + yyy;
+
+    return formattedToday;
+  };
+
+  const handleHireJob = () => {
+    const infoBooking = new InfoBooking();
+    infoBooking.maCongViec = jobId;
+    infoBooking.maNguoiThue = userId;
+    infoBooking.ngayThue = getToDay();
+    infoBooking.hoanThanh = false;
+
+    dispatch(bookingJobAction(infoBooking));
+  };
 
   const { congViecChiTiet } = useSelector((state) => state.ManagerJobReducer);
   const { danhSachBinhLuan } = useSelector((state) => state.ManagerCommentReducer);
 
-  //   console.log("congViecChiTiet:", congViecChiTiet);
-  console.log("danhSachBinhLuan:", danhSachBinhLuan);
+  //   console.log("danhSachBinhLuan:", danhSachBinhLuan);
 
   useEffect(() => {
     dispatch(getCongViecChiTietAction(jobId));
@@ -431,7 +460,12 @@ function JobDetail(props) {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">
+                    <button
+                      onClick={() => {
+                        handleHireJob();
+                      }}
+                      className="btn-lg btn btn-success btn-block my-4"
+                    >
                       Continue (${congViecChiTiet[0]?.congViec.giaTien})
                     </button>
                     <div role="button" className="h5 text-success text-center">
