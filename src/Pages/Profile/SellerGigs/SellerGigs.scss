@@ -1,0 +1,55 @@
+.SellerGigs {
+  .status-filter-bar {
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0 25px;
+    margin-bottom: 25px;
+    position: relative;
+    list-style: none;
+    li {
+      padding: 23px 0;
+      margin-right: 35px;
+      font-size: 14px;
+      line-height: 130%;
+      font-weight: 600;
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      &::after {
+        content: '';
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        background-color: #1dbf73;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+  .main {
+    .job-card{
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      .image-job-card{
+        width: 150px;
+      }
+      .delete-job-card{
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        border: 1px solid #ddd;
+        padding: 5px 15px;
+        font-size: 10px;
+        border-radius: 5px;
+        background-color: hsl(356deg 80% 65%);
+        &:hover{
+          background-color: #ddd;
+          transition: .2s ;
+        }
+      }
+    }
+  }
+}

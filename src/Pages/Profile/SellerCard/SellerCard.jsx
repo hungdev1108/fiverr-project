@@ -3,14 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfoAction } from "store/actions/UserManagerAction";
 import "./SellerCard.scss";
 
-export default function SellerCard() {
-  const userID = useSelector(
-    (state) => state.UserManagerReducer.userSignin.user.id
-  );
+export default function SellerCard(props) {
+  const userID = props.userID;
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
 
-  const getUserName = () => {
-    return userInfo.name?.charAt(0);
+  const getUserAvatar = () => {
+    return userInfo.avatar ? (
+      <img
+        className="missing-profile-image"
+        src={userInfo.avatar}
+        alt="avatar"
+      />
+    ) : (
+      <span className="missing-profile-image">{userInfo.name?.charAt(0)}</span>
+    );
   };
 
   const dispatch = useDispatch();
@@ -28,9 +34,7 @@ export default function SellerCard() {
 
         <div className="user-profile">
           <div className="div d-flex justify-content-center">
-            <div className="user-profile-image">
-              <span className="missing-profile-image">{getUserName()}</span>
-            </div>
+            <div className="user-profile-image">{getUserAvatar()}</div>
           </div>
 
           <div className="user-profile-label">

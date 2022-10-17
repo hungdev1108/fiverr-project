@@ -1,17 +1,21 @@
-.Profile{
-    padding-top: 30px;
-    background-color: #f7f7f7;
-    .main{
-        padding: 20px 0 40px;
-        margin: 0 auto;
-        .row{
-            justify-content: space-between;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0 18px;
-            .info-column{
-                width: 400px;
-            }
-        }
+.Profile {
+  padding-top: 30px;
+  background-color: #f7f7f7;
+  .main {
+    padding: 20px 0 40px;
+    margin: 0 auto;
+    .row {
+      justify-content: space-between;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0 18px;
+      .info-column {
+        width: 35%
+      }
+      .gigs-column {
+        width: 60%;
+        padding-left: 20px;
+      }
     }
+  }
 }
