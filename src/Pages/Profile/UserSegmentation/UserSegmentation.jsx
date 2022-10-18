@@ -1,16 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { putUserInfoAction } from "store/actions/UserManagerAction";
 import "./UserSegmentation.scss";
 
 export default function UserSegmentation(props) {
   const userID = props.userID;
+  const dispatch = useDispatch()
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
-  console.log("id", userID);
-  console.log("info", userInfo);
-
-  const addData = (e) => {
-    console.log(e);
-  };
+  const [isHiddenSkill, setIsHiddenSkill] = useState(true);
+  const [isHiddenCertication, setIsHiddenCertication] = useState(true);
 
   const showSkill = () => {
     return userInfo.skill?.length !== 0 ? (
@@ -44,26 +42,36 @@ export default function UserSegmentation(props) {
     );
   };
 
+  const handleSubmitSkill = (event) => {
+    event.preventDefault();
+    const skill = event.target.elements.skill.value;
+    // dispatch(putUserInfoAction(userID))
+  };
+  const handleSubmitCertication = (event) => {
+    event.preventDefault();
+    const certication = event.target.elements.certication.value;
+  };
+
   return (
     <div className="UserSegmentation">
       <article>
-        <form>
+        <section className="box">
           <div className="inner-row">
             <h3>Description</h3>
             <p>I am a final student of CyberSoft</p>
           </div>
-        </form>
+        </section>
 
-        <form>
+        <section className="box">
           <div className="inner-row">
             <h3>Languages</h3>
             <p>
               English - <span>Basic</span>
             </p>
           </div>
-        </form>
+        </section>
 
-        <form>
+        <section className="box">
           <div className="inner-row">
             <h3>Linked Accounts</h3>
             <ul className="social">
@@ -90,50 +98,72 @@ export default function UserSegmentation(props) {
               </li>
             </ul>
           </div>
-        </form>
+        </section>
 
-        <form className="skill">
+        <section className="skill box">
           <div className="inner-row">
             <h3>
               <span>Skills</span>
-              <button type="button" onClick={addData} className="add">
+              <button
+                type="button"
+                onClick={() => setIsHiddenSkill(false)}
+                className="add"
+              >
                 Addnew
               </button>
             </h3>
 
-            <section>
+            <form
+              onSubmit={handleSubmitSkill}
+              style={{ border: "none", padding: 0, margin: 0 }}
+            >
               <input
+                name="skill"
                 type="text"
+                hidden={isHiddenSkill}
                 className="empty-list"
                 placeholder="Add your Skills."
+                required
               />
               {showSkill()}
-            </section>
+              <button type="submit" hidden></button>
+            </form>
           </div>
-        </form>
+        </section>
 
-        <form
-          className="certication"
+        <section
+          className="certication box"
           style={{ border: "none", padding: 0, margin: 0 }}
         >
           <div className="inner-row">
             <h3>
               <span>Certification</span>
-              <button type="button" onClick={addData} className="add">
+              <button
+                type="button"
+                onClick={() => setIsHiddenCertication(false)}
+                className="add"
+              >
                 Addnew
               </button>
             </h3>
 
-            <section>
+            <form
+              onSubmit={handleSubmitCertication}
+              style={{ border: "none", padding: 0, margin: 0 }}
+            >
               <input
+                name="certication"
                 type="text"
+                hidden={isHiddenCertication}
                 className="empty-list"
                 placeholder="Add your Certifications."
+                required
               />
               {showCertication()}
-            </section>
+              <button type="submit" hidden></button>
+            </form>
           </div>
-        </form>
+        </section>
       </article>
     </div>
   );
