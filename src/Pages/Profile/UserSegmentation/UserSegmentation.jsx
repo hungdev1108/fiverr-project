@@ -7,6 +7,43 @@ export default function UserSegmentation(props) {
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
   console.log("id", userID);
   console.log("info", userInfo);
+
+  const addData = (e) => {
+    console.log(e);
+  };
+
+  const showSkill = () => {
+    return userInfo.skill?.length !== 0 ? (
+      <ul className="item-list">
+        {userInfo?.skill?.map((item, index) => {
+          return (
+            <li key={index} className="skill-bubble">
+              <h4>{item}</h4>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <></>
+    );
+  };
+
+  const showCertication = () => {
+    return userInfo.certification?.length !== 0 ? (
+      <ul className="item-list">
+        {userInfo.certification?.map((item, index) => {
+          return (
+            <li key={index} className="skill-bubble">
+              <h4>{item}</h4>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <></>
+    );
+  };
+
   return (
     <div className="UserSegmentation">
       <article>
@@ -29,7 +66,7 @@ export default function UserSegmentation(props) {
         <form>
           <div className="inner-row">
             <h3>Linked Accounts</h3>
-            <ul>
+            <ul className="social">
               <li>
                 <span>Facebook</span>
               </li>
@@ -59,15 +96,41 @@ export default function UserSegmentation(props) {
           <div className="inner-row">
             <h3>
               <span>Skills</span>
-              <button className="add">Addnew</button>
+              <button type="button" onClick={addData} className="add">
+                Addnew
+              </button>
             </h3>
 
             <section>
-              <div className="empty-list">
-                Add your Skills.
-                <input type="hidden" />
-              </div>
-              <input type='hidden' value="0" />
+              <input
+                type="text"
+                className="empty-list"
+                placeholder="Add your Skills."
+              />
+              {showSkill()}
+            </section>
+          </div>
+        </form>
+
+        <form
+          className="certication"
+          style={{ border: "none", padding: 0, margin: 0 }}
+        >
+          <div className="inner-row">
+            <h3>
+              <span>Certification</span>
+              <button type="button" onClick={addData} className="add">
+                Addnew
+              </button>
+            </h3>
+
+            <section>
+              <input
+                type="text"
+                className="empty-list"
+                placeholder="Add your Certifications."
+              />
+              {showCertication()}
             </section>
           </div>
         </form>
