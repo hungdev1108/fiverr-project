@@ -1,6 +1,15 @@
-import { BookingJobSuccess, SignUpError } from "components/Notifications/Notifications";
+import {
+  BookingJobSuccess,
+  deleteHiredJobSuccess,
+  SignUpError,
+} from "components/Notifications/Notifications";
 import { userManagerServices } from "services/UserManagerServices";
-import { BOOKING_JOB, SET_USER_INFO, SIGNIN_ACTION, SIGNUP_ACTION } from "store/types/UserManagerType";
+import {
+  BOOKING_JOB,
+  SET_USER_INFO,
+  SIGNIN_ACTION,
+  SIGNUP_ACTION,
+} from "store/types/UserManagerType";
 import { InfoBooking } from "_core/models/InfoBooking";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingActions";
 
@@ -67,12 +76,13 @@ export const getUserInfoAction = (id) => {
   };
 };
 
-export const putUserInfoAction = (id) => {
+export const putUserInfoAction = (id, modal) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await userManagerServices.putUserInfo(id);
+      await userManagerServices.putUserInfo(id, modal);
       //   console.log(result.data.content);
+      dispatch(getUserInfoAction(id));
       dispatch(hideLoadingAction);
     } catch (errors) {
       dispatch(hideLoadingAction);
@@ -112,6 +122,36 @@ export const bookingJobAction = (infoBooking = new InfoBooking()) => {
     } catch (error) {
       dispatch(hideLoadingAction);
       // registerError(error.response?.data.content);
+      console.log("error", error);
+    }
+  };
+};
+
+export const deleteHireJobAction = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(displayLoadingAction);
+      await userManagerServices.deleteHireJob(id);
+      dispatch(displayLoadingAction);
+      deleteHiredJobSuccess();
+      dispatch(hideLoadingAction);
+      dispatch(getHireJobListAction());
+    } catch (error) {
+      // registerError(error.response?.data.content);
+      console.log("error", error);
+    }
+  };
+};
+
+export const uploadAvatarAction = (formFile) => {
+  return async (dispatch) => {
+    try {
+      dispatch(displayLoadingAction);
+      await userManagerServices.uploadAvatar(formFile);
+      dispatch(displayLoadingAction);
+      dispatch(hideLoadingAction);
+    } catch (error) {
+      dispatch(hideLoadingAction);
       console.log("error", error);
     }
   };

@@ -11,7 +11,7 @@ export class baseService {
       data: model,
       headers: {
         tokenCybersoft: TOKEN_CYBER,
-        token: "Bearer " + localStorage.getItem(TOKEN), // JWT
+        token: localStorage.getItem(TOKEN), // JWT
       },
     });
   };
@@ -36,17 +36,19 @@ export class baseService {
       method: "GET",
       headers: {
         tokenCybersoft: TOKEN_CYBER, // JWT
+        token: localStorage.getItem(TOKEN),
       },
     });
   };
 
   // delete method
-  delete = (url, model) => {
+  delete = (url) => {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "DELETE",
       headers: {
-        tokenCybersoft: "Bearer " + localStorage.getItem(TOKEN_CYBER), // JWT
+        tokenCybersoft: TOKEN_CYBER, // JWT
+        token: localStorage.getItem(TOKEN),
       },
     });
   };

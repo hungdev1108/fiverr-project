@@ -40,8 +40,8 @@ export class UserManagerServices extends baseService {
     return this.get(`api/users/${id}`);
   };
 
-  putUserInfo = (id) => {
-    return this.put(`api/users/${id}`);
+  putUserInfo = (id, model) => {
+    return this.put(`api/users/${id}`, model);
   };
 
   getHireJobList = () => {
@@ -50,6 +50,14 @@ export class UserManagerServices extends baseService {
 
   bookingJob = (infoBooking = new InfoBooking()) => {
     return this.post(`api/thue-cong-viec`, infoBooking);
+  };
+
+  deleteHireJob = (id) => {
+    return this.delete(`api/thue-cong-viec/${id}`);
+  };
+
+  uploadAvatar = (formFile) => {
+    this.post(`api/users/upload-avatar`,formFile);
   };
 }
 
