@@ -1,7 +1,72 @@
-.UserSegmentation{
-    article{
-        border: 1px solid #dddd;
-        padding: 30px;
-        background-color: #fff;
+.UserSegmentation {
+  
+  article {
+    border: 1px solid #dddd;
+    padding: 30px;
+    background-color: #fff;
+    form {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      .inner-row {
+        h3 {
+          color: #0e0e0f;
+          font-size: 16px;
+          font-weight: 700;
+          padding-bottom: 7px;
+          .add{
+            float: right;
+            border: none;
+            background-color: transparent;
+            color: #00698c;
+            font-size: 14px;
+            font-weight: 500;
+            &:hover{
+                text-decoration: underline;
+                transition: 0.3s;
+            }
+          }
+        }
+        p {
+          margin: 0;
+          margin-top: 10px;
+          span {
+            color: #b2b2b2;
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+
+        ul {
+          list-style: none;
+          li {
+            margin: 0;
+            padding: 7px 0 7px 26px;
+            color: #00698c;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            &::before {
+              content: "+";
+              font-size: 14px;
+              font-weight: 600;
+              margin-left: -25px;
+              font-family: "Font Awesome 5 Free";
+              position: absolute;
+              z-index: 1;
+            }
+          }
+        }
+
+        .empty-list{
+            color: #b2b2b2;
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+      }
     }
+    form.skill{
+
+    }
+  }
 }

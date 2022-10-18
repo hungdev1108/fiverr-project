@@ -12,7 +12,6 @@ export default function SellerGigs(props) {
   );
 
   const renderBookingJob = () => {
-    console.log(bookingJob);
     return bookingJob?.map((job) => {
       return (
         <Card
