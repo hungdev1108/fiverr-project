@@ -5,10 +5,10 @@ import "./UserSegmentation.scss";
 
 export default function UserSegmentation(props) {
   const userID = props.userID;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
   const [isHiddenSkill, setIsHiddenSkill] = useState(true);
-  const [isHiddenCertication, setIsHiddenCertication] = useState(true);
+  const [isHiddenCertification, setIsHiddenCertification] = useState(true);
 
   const showSkill = () => {
     return userInfo.skill?.length !== 0 ? (
@@ -26,7 +26,7 @@ export default function UserSegmentation(props) {
     );
   };
 
-  const showCertication = () => {
+  const showCertification = () => {
     return userInfo.certification?.length !== 0 ? (
       <ul className="item-list">
         {userInfo.certification?.map((item, index) => {
@@ -45,11 +45,23 @@ export default function UserSegmentation(props) {
   const handleSubmitSkill = (event) => {
     event.preventDefault();
     const skill = event.target.elements.skill.value;
-    // dispatch(putUserInfoAction(userID))
+    const skills = userInfo.skill;
+    skills.push(skill);
+    const UserInfoUpdate = { ...userInfo, skill: skills };
+    dispatch(putUserInfoAction(userID, UserInfoUpdate));
+    event.target.elements.skill.value = "";
+    setIsHiddenSkill(true);
   };
-  const handleSubmitCertication = (event) => {
+
+  const handleSubmitCertification = (event) => {
     event.preventDefault();
-    const certication = event.target.elements.certication.value;
+    const certification = event.target.elements.certification.value;
+    const certifications = userInfo.certification;
+    certifications.push(certification);
+    const UserInfoUpdate = { ...userInfo, certification: certifications };
+    dispatch(putUserInfoAction(userID, UserInfoUpdate));
+    event.target.elements.certification.value = "";
+    setIsHiddenCertification(true);
   };
 
   return (
@@ -132,7 +144,7 @@ export default function UserSegmentation(props) {
         </section>
 
         <section
-          className="certication box"
+          className="certification box"
           style={{ border: "none", padding: 0, margin: 0 }}
         >
           <div className="inner-row">
@@ -140,7 +152,7 @@ export default function UserSegmentation(props) {
               <span>Certification</span>
               <button
                 type="button"
-                onClick={() => setIsHiddenCertication(false)}
+                onClick={() => setIsHiddenCertification(false)}
                 className="add"
               >
                 Addnew
@@ -148,18 +160,18 @@ export default function UserSegmentation(props) {
             </h3>
 
             <form
-              onSubmit={handleSubmitCertication}
+              onSubmit={handleSubmitCertification}
               style={{ border: "none", padding: 0, margin: 0 }}
             >
               <input
-                name="certication"
+                name="certification"
                 type="text"
-                hidden={isHiddenCertication}
+                hidden={isHiddenCertification}
                 className="empty-list"
                 placeholder="Add your Certifications."
                 required
               />
-              {showCertication()}
+              {showCertification()}
               <button type="submit" hidden></button>
             </form>
           </div>

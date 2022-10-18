@@ -7,6 +7,21 @@ export default function SellerCard(props) {
   const userID = props.userID;
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
 
+  const changeAvatar = (e) => {
+    let file = e.target.files[0];
+    if (
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/png" ||
+      file.type === "image/gif"
+    ) {
+      //readFile
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      console.log(file);
+    }
+  };
+
   const getUserAvatar = () => {
     return userInfo.avatar ? (
       <img
@@ -34,7 +49,15 @@ export default function SellerCard(props) {
 
         <div className="user-profile">
           <div className="div d-flex justify-content-center">
-            <div className="user-profile-image">{getUserAvatar()}</div>
+            <div className="user-profile-image">
+              {getUserAvatar()}
+              <input
+                type="file"
+                onChange={changeAvatar}
+                className="input-img"
+                accept="image/png, image/jpeg, image/jpg, image/gif"
+              />
+            </div>
           </div>
 
           <div className="user-profile-label">
@@ -97,7 +120,7 @@ export default function SellerCard(props) {
                 </span>
                 Member since
               </span>
-              <b>Oct 2022</b>
+              <b>{userInfo.birthday}</b>
             </li>
           </ul>
         </div>

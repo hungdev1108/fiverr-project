@@ -42,7 +42,7 @@ export class baseService {
   };
 
   // delete method
-  delete = (url, model) => {
+  delete = (url) => {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: "DELETE",
