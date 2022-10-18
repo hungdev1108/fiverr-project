@@ -75,7 +75,7 @@ export const putUserInfoAction = (id) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await userManagerServices.putUserInfo(id);
+      await userManagerServices.putUserInfo(id);
       //   console.log(result.data.content);
       dispatch(hideLoadingAction);
     } catch (errors) {
