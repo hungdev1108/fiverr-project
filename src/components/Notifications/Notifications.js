@@ -13,8 +13,8 @@ const { confirm } = Modal;
 
 export const SignUpSuccess = (history) => {
   Modal.success({
-    title: "ĐĂNG KÝ TÀI KHOẢN THÀNH CÔNG!",
-    content: "ĐĂNG KÝ TÀI KHOẢN THÀNH CÔNG",
+    title: "Notification!",
+    content: "Successful account registration!",
     onOk() {
       history.push(`/signin`);
     },
@@ -23,7 +23,7 @@ export const SignUpSuccess = (history) => {
 
 export const SignUpError = (noti) => {
   Modal.error({
-    title: "ĐĂNG KÝ TÀI KHOẢN KHÔNG THÀNH CÔNG!",
+    title: "Account registration failed!",
     content: noti,
     onOk() {},
   });
@@ -31,7 +31,7 @@ export const SignUpError = (noti) => {
 
 export const signInError = (noti) => {
   Modal.error({
-    title: "ĐĂNG NHẬP KHÔNG THÀNH CÔNG!",
+    title: "Login failed!",
     content: noti,
     onOk() {},
   });
@@ -39,8 +39,8 @@ export const signInError = (noti) => {
 
 export const ConfirmSignOut = (history) => {
   confirm({
-    title: "THÔNG BÁO!",
-    content: "BẠN CÓ MUỐN ĐĂNG XUẤT?",
+    title: "Notification!",
+    content: "Want to sign out of your account??",
     onOk() {
       localStorage.removeItem(USER_LOGIN);
       localStorage.removeItem(TOKEN);
@@ -73,8 +73,8 @@ export const deleteHiredJobSuccess = () => {
 
 export const BookingJobSuccess = () => {
   Modal.success({
-    title: "ĐĂNG KÝ TÀI KHOẢN THÀNH CÔNG!",
-    content: "ĐĂNG KÝ TÀI KHOẢN THÀNH CÔNG",
+    title: "Notification!",
+    content: "Job hire successful, please check in profile page!",
     onOk() {
       window.location.reload();
     },
