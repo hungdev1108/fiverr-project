@@ -19,11 +19,12 @@ export default function SellerCard(props) {
       file.type === "image/gif"
     ) {
       //readFile
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
+      // let reader = new FileReader();
+      // reader.readAsDataURL(file);
       let formData = new FormData();
-      // formData.append(file);
-      dispatch(uploadAvatarAction(formData));
+      formData.append("file", file, file.name);
+      console.log(formData);
+      // dispatch(uploadAvatarAction(formData));
     }
   };
 
