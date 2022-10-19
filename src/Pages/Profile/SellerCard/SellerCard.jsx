@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfoAction } from "store/actions/UserManagerAction";
+import {
+  getUserInfoAction,
+  uploadAvatarAction,
+} from "store/actions/UserManagerAction";
 import "./SellerCard.scss";
 
 export default function SellerCard(props) {
@@ -18,7 +21,9 @@ export default function SellerCard(props) {
       //readFile
       let reader = new FileReader();
       reader.readAsDataURL(file);
-      console.log(file);
+      let formData = new FormData();
+      // formData.append(file);
+      dispatch(uploadAvatarAction(formData));
     }
   };
 
@@ -55,7 +60,7 @@ export default function SellerCard(props) {
                 type="file"
                 onChange={changeAvatar}
                 className="input-img"
-                accept="image/png, image/jpeg, image/jpg, image/gif"
+                accept="image/*"
               />
             </div>
           </div>
