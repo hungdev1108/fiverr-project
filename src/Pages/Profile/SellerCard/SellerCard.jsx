@@ -22,9 +22,8 @@ export default function SellerCard(props) {
       // let reader = new FileReader();
       // reader.readAsDataURL(file);
       let formData = new FormData();
-      formData.append("file", file, file.name);
-      console.log(formData);
-      // dispatch(uploadAvatarAction(formData));
+      formData.set("file", file, file.name);
+      dispatch(uploadAvatarAction(file));
     }
   };
 
