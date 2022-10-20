@@ -12,19 +12,10 @@ export default function SellerCard(props) {
 
   const changeAvatar = (e) => {
     let file = e.target.files[0];
-    if (
-      file.type === "image/jpeg" ||
-      file.type === "image/jpg" ||
-      file.type === "image/png" ||
-      file.type === "image/gif"
-    ) {
-      //readFile
-      // let reader = new FileReader();
-      // reader.readAsDataURL(file);
-      let formData = new FormData();
-      formData.set("file", file, file.name);
-      dispatch(uploadAvatarAction(file));
-    }
+    let formData = new FormData();
+    formData.append("formFile", file, file.name);
+    console.log(formData.get("formFile"));
+    dispatch(uploadAvatarAction(formData));
   };
 
   const getUserAvatar = () => {
@@ -59,6 +50,7 @@ export default function SellerCard(props) {
               <input
                 type="file"
                 onChange={changeAvatar}
+                name="uploadAvatar"
                 className="input-img"
                 accept="image/*"
               />
