@@ -1,28 +1,43 @@
-import React, { useEffect } from "react";
+import { cameraImg } from "assets/images/svgImage";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "react-bootstrap";
 import {
   getUserInfoAction,
   uploadAvatarAction,
 } from "store/actions/UserManagerAction";
 import "./SellerCard.scss";
+import UpdateInfoUser from "./UpdateInfoUser/UpdateInfoUser";
 
 export default function SellerCard(props) {
   const userID = props.userID;
   const userInfo = useSelector((state) => state.UserManagerReducer.infoUser);
+  const inputUpload = useRef();
+  const [avatar, setAvatar] = useState(userInfo.avatar);
+  const [showModal, setshowModal] = useState(false);
 
   const changeAvatar = (e) => {
     let file = e.target.files[0];
+    //readFile
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      setAvatar(e.target.result); //base64 img
+    };
     let formData = new FormData();
     formData.append("formFile", file, file.name);
-    console.log(formData.get("formFile"));
-    dispatch(uploadAvatarAction(formData));
+    dispatch(uploadAvatarAction(userID, formData));
+  };
+
+  const clickUploadInput = () => {
+    inputUpload.current.click();
   };
 
   const getUserAvatar = () => {
     return userInfo.avatar ? (
       <img
         className="missing-profile-image"
-        src={userInfo.avatar}
+        src={avatar ? avatar : userInfo.avatar}
         alt="avatar"
       />
     ) : (
@@ -31,11 +46,20 @@ export default function SellerCard(props) {
   };
 
   const dispatch = useDispatch();
-  useEffect((_) => {
+  useEffect(() => {
     dispatch(getUserInfoAction(userID));
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [avatar]);
   return (
     <div className="SellerCard">
+      <Modal show={showModal} onHide={() => setshowModal(false)}>
+        <Modal.Header>
+          <Modal.Title>Update infomation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <UpdateInfoUser userID={userID} userInfo={userInfo} setshowModal={setshowModal} />
+        </Modal.Body>
+      </Modal>
       <main className="main">
         <div className="status">
           <div className="user-online-indicator">
@@ -53,7 +77,12 @@ export default function SellerCard(props) {
                 name="uploadAvatar"
                 className="input-img"
                 accept="image/*"
+                ref={inputUpload}
+                hidden
               />
+              <div className="upload-image" onClick={clickUploadInput}>
+                {cameraImg}
+              </div>
             </div>
           </div>
 
@@ -63,7 +92,7 @@ export default function SellerCard(props) {
             </div>
             <div className="oneliner-wrapper">
               <div className="liner-and-pen">
-                <button>
+                <button onClick={() => setshowModal(true)}>
                   <svg
                     width={16}
                     height={16}

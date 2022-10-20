@@ -19,6 +19,7 @@ function JobListJobType(props) {
 
   useEffect(() => {
     dispatch(getChiTietLoaiCongViecAction(id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

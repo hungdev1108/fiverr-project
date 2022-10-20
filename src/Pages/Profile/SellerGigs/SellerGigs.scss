@@ -19,7 +19,7 @@
       cursor: pointer;
       position: relative;
       &::after {
-        content: '';
+        content: "";
         height: 3px;
         position: absolute;
         bottom: 0;
@@ -30,28 +30,37 @@
     }
   }
   .main {
-    .job-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .job-card {
       margin-bottom: 20px;
+      width: 48%;
+      border-radius: 10px;
       border: 1px solid #ddd;
-      .content{
-        .image-job-card{
-          margin-right: 10px;
-          width: 25%;
-          height: 100%;
+      .content {
+        font-size: 14px;
+        .image-job-card {
+          margin-right: 12px;
+          img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+          }
         }
       }
-      .delete-job-card{
+      .delete-job-card {
         position: absolute;
-        right: 16px;
-        top: 16px;
+        right: -15px;
+        top: -5px;
         border: 1px solid #ddd;
         padding: 5px 15px;
         font-size: 10px;
         border-radius: 5px;
         background-color: hsl(356deg 80% 65%);
-        &:hover{
+        &:hover {
           background-color: #ddd;
-          transition: .2s ;
+          transition: 0.2s;
         }
       }
     }

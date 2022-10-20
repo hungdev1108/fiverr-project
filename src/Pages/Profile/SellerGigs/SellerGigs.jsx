@@ -2,6 +2,7 @@ import { Card } from "antd";
 import { ConfirmDeleteHiredJob } from "components/Notifications/Notifications";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getHireJobListAction } from "store/actions/UserManagerAction";
 import "./SellerGigs.scss";
 
@@ -11,6 +12,16 @@ export default function SellerGigs(props) {
     (state) => state.UserManagerReducer.bookingJob
   );
 
+  const renderDescription = (description) => {
+    return description.length > 200 ? (
+      <p>
+        {description.substr(0, 200)}<span> ...</span>
+      </p>
+    ) : (
+      <p>{description}</p>
+    );
+  };
+
   const renderBookingJob = () => {
     return bookingJob?.map((job) => {
       return (
@@ -19,16 +30,15 @@ export default function SellerGigs(props) {
           key={job.id}
           title={job.congViec.tenCongViec}
         >
-          <div
-            className="content d-flex flex-row text-secondary"
-            style={{ fontSize: 14 }}
-          >
-            <img
-              className="image-job-card mr-3"
-              src={job.congViec.hinhAnh}
-              alt={job.congViec.tenCongViec}
-            />
-            <p>{job.congViec.moTa}</p>
+          <div className="content text-secondary">
+            <Link
+              className="image-job-card"
+              to={`/jobDetail/${job.congViec.id}`}
+            >
+              <img src={job.congViec.hinhAnh} alt={job.congViec.tenCongViec} />
+            </Link>
+
+            {renderDescription(job.congViec.moTa)}
           </div>
           <button
             onClick={() => ConfirmDeleteHiredJob(job.id, dispatch)}
@@ -43,6 +53,7 @@ export default function SellerGigs(props) {
 
   useEffect(() => {
     dispatch(getHireJobListAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
