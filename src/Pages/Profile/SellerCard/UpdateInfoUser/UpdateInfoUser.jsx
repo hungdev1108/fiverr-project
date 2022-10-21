@@ -19,7 +19,7 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
     values.email = userInfo?.email;
     values.gender = userInfo?.gender;
     values.role = userInfo?.role;
-    values.birthday = moment(values.birthday).format("DD/MM/YYYY");
+    values.birthday = moment(values.birthday).format("MM/DD/YYYY");
     dispatch(putUserInfoAction(userID, values));
   };
 
