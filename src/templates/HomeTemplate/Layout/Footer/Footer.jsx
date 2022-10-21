@@ -7,7 +7,7 @@ function Footer() {
     <footer id="footer">
       <Container className="footer-wrapper">
         <Row className="footer-collapsibles">
-          <Col>
+          <Col xs={12} sm={4} md={2}>
             <h6 className="mb-3 font-weight-bold">Categories</h6>
             <div className="content">
               <ul>
@@ -44,7 +44,7 @@ function Footer() {
               </ul>
             </div>
           </Col>
-          <Col>
+          <Col  xs={12} sm={4} md={2}>
             <h6 className="mb-3 font-weight-bold">About</h6>
             <div className="content">
               <ul>
@@ -72,7 +72,7 @@ function Footer() {
               </ul>
             </div>
           </Col>
-          <Col>
+          <Col xs={12} sm={4} md={2}>
             <h6 className="mb-3 font-weight-bold">Support</h6>
             <div className="content">
               <ul>
@@ -91,7 +91,7 @@ function Footer() {
               </ul>
             </div>
           </Col>
-          <Col>
+          <Col xs={12} sm={4} md={2}>
             <h6 className="mb-3 font-weight-bold">Community</h6>
             <div className="content">
               <ul>
@@ -122,7 +122,7 @@ function Footer() {
               </ul>
             </div>
           </Col>
-          <Col>
+          <Col xs={12} sm={4} md={2}>
             <h6 className="mb-3 font-weight-bold">More From Fiverr</h6>
             <div className="content">
               <ul>

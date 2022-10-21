@@ -1,3 +1,4 @@
+@import "./../../../../assets/scss/App.scss";
 #footer {
   a,
   li,
@@ -16,6 +17,12 @@
       margin-bottom: 8px;
       padding-bottom: 10px;
       padding-top: 16px;
+      justify-content: space-between;
+      .content{
+        @include mobile-sm{
+          font-size: 14px;
+        }
+      }
       &::after {
         background-color: #e4e5e7;
         content: "";

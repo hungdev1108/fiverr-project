@@ -18,7 +18,8 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
     setshowModal(false);
     values.email = userInfo?.email;
     values.gender = userInfo?.gender;
-    values.birthday = moment(values.birthday).format("MM/DD/YYYY");
+    values.role = userInfo?.role;
+    values.birthday = moment(values.birthday).format("DD/MM/YYYY");
     dispatch(putUserInfoAction(userID, values));
   };
 
@@ -34,7 +35,9 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           phone: userInfo?.phone,
           skill: userInfo?.skill,
           certification: userInfo?.certification,
-          birthday: moment(userInfo?.birthday),
+          birthday: moment(userInfo?.birthday)._isValid
+            ? moment(userInfo?.birthday)
+            : "",
         }}
         scrollToFirstError
         size="large"
@@ -78,7 +81,10 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           name="birthday"
           rules={[{ required: true, message: "Please select your birthday!" }]}
         >
-          <DatePicker format={'MM/DD/YYYY'} onChange={(date)=>console.log(date)} />
+          <DatePicker
+            format={"DD/MM/YYYY"}
+            onChange={(date) => console.log("datePicker", date)}
+          />
         </Form.Item>
 
         <Form.Item name="skill" label="Skill">
