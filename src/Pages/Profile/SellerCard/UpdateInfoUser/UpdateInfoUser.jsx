@@ -16,6 +16,7 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
 
   const onFinish = (values) => {
     setshowModal(false);
+    values = {...values}
     values.email = userInfo?.email;
     values.gender = userInfo?.gender;
     values.role = userInfo?.role;
@@ -88,7 +89,7 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
         </Form.Item>
 
         <Form.Item name="skill" label="Skill">
-          <Select mode="multiple" placeholder="select your skills">
+          <Select mode="tags" placeholder="select your skills">
             {userInfo?.skill.map((item, index) => {
               return (
                 <Option key={index} value={item}>
@@ -99,7 +100,7 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           </Select>
         </Form.Item>
         <Form.Item name="certification" label="Certification">
-          <Select mode="multiple" placeholder="select your certification">
+          <Select mode="tags" placeholder="select your certification">
             {userInfo?.certification.map((item, index) => {
               return (
                 <Option key={index} value={item}>
