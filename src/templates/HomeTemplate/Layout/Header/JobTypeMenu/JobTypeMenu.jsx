@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { getJobTypeMenuAction } from "store/actions/ManagerJobAction";
 import "./JobTypeMenu.scss";
@@ -110,6 +110,7 @@ function JobTypeMenu(props) {
 
   useEffect(() => {
     dispatch(getJobTypeMenuAction());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //   <Slider {...settings}>

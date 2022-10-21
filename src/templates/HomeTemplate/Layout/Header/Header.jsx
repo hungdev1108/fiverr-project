@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector } from "react-redux";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Header.scss";
 import JobTypeMenu from "./JobTypeMenu/JobTypeMenu";
 import _ from "lodash";

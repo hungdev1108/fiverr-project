@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "immer": "^9.0.15",
     "sass": "^1.55.0"
   }
 }

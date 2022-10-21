@@ -132,9 +132,8 @@ export const deleteHireJobAction = (id) => {
     try {
       dispatch(displayLoadingAction);
       await userManagerServices.deleteHireJob(id);
-      dispatch(displayLoadingAction);
-      deleteHiredJobSuccess();
       dispatch(hideLoadingAction);
+      deleteHiredJobSuccess();
       dispatch(getHireJobListAction());
     } catch (error) {
       // registerError(error.response?.data.content);
@@ -143,13 +142,13 @@ export const deleteHireJobAction = (id) => {
   };
 };
 
-export const uploadAvatarAction = (formFile) => {
+export const uploadAvatarAction = (id, formFile) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
       await userManagerServices.uploadAvatar(formFile);
-      dispatch(displayLoadingAction);
       dispatch(hideLoadingAction);
+      dispatch(getUserInfoAction(id))
     } catch (error) {
       dispatch(hideLoadingAction);
       console.log("error", error);
