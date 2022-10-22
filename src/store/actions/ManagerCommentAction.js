@@ -18,14 +18,13 @@ export const getBinhLuanTheoMaCongViecAction = (maCongViec) => {
   };
 };
 
-export const postBinhLuanAction = (thongTinBinhLuan) => {
+export const postBinhLuanAction = (comment) => {
   return async (dispatch) => {
     try {
       dispatch(displayLoadingAction);
-      const result = await userManagerServices.postBinhLuan(thongTinBinhLuan);
-      dispatch(displayLoadingAction);
-      dispatch(getBinhLuanTheoMaCongViecAction());
-      //   console.log("Register Action:", result);
+      const result = await managerCommentServices.postBinhLuan(comment);
+      dispatch(hideLoadingAction);
+      console.log("thongTinBinhLuan:", result);
     } catch (error) {
       dispatch(hideLoadingAction);
       // registerError(error.response?.data.content);

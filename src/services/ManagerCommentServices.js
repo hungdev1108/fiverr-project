@@ -11,8 +11,8 @@ export class ManagerCommentServices extends baseService {
   };
 
   // API Danh sách bình luận theo mã công việc
-  postBinhLuan = (thongTinBinhLuan) => {
-    return this.get(`api/binh-luan/${thongTinBinhLuan}`);
+  postBinhLuan = (comment) => {
+    return this.post(`api/binh-luan`, comment);
   };
 }
 

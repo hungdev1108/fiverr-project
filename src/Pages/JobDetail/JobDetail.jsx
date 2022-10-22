@@ -1,11 +1,14 @@
-import { Tabs } from "antd";
-import { Fragment, useEffect } from "react";
-import { FloatingLabel, Form, ProgressBar } from "react-bootstrap";
+import { Input, Tabs, Form } from "antd";
+import { confirmComment } from "components/Notifications/Notifications";
+import moment from "moment/moment";
+import { Fragment, useEffect, useState } from "react";
+import { ProgressBar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
-import { getBinhLuanTheoMaCongViecAction } from "store/actions/ManagerCommentAction";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import { getBinhLuanTheoMaCongViecAction, postBinhLuanAction } from "store/actions/ManagerCommentAction";
 import { getCongViecChiTietAction } from "store/actions/ManagerJobAction";
 import { bookingJobAction } from "store/actions/UserManagerAction";
+import { USER_LOGIN } from "utils/settings/config";
 import { InfoBooking } from "_core/models/InfoBooking";
 import "./JobDetail.scss";
 
@@ -14,13 +17,21 @@ const { TabPane } = Tabs;
 function JobDetail(props) {
   const dispatch = useDispatch();
   const match = useRouteMatch();
+  const [loadComment, setLoadComment] = useState(0);
+  const [form] = Form.useForm();
+  const history = useHistory();
+
+  const { congViecChiTiet } = useSelector((state) => state.ManagerJobReducer);
+  const { danhSachBinhLuan } = useSelector((state) => state.ManagerCommentReducer);
 
   const jobId = match.params.jobId;
-  //   console.log(jobId);
   const { userSignin } = useSelector((state) => state.UserManagerReducer);
-  //   console.log({ userSignin });
-
   const userId = userSignin.user?.id;
+
+  useEffect(() => {
+    dispatch(getCongViecChiTietAction(jobId));
+    dispatch(getBinhLuanTheoMaCongViecAction(jobId));
+  }, []);
 
   const getToDay = () => {
     const today = new Date();
@@ -46,15 +57,18 @@ function JobDetail(props) {
     dispatch(bookingJobAction(infoBooking));
   };
 
-  const { congViecChiTiet } = useSelector((state) => state.ManagerJobReducer);
-  const { danhSachBinhLuan } = useSelector((state) => state.ManagerCommentReducer);
+  const onFinish = (values) => {
+    if (!localStorage.getItem(USER_LOGIN)) {
+      return confirmComment(history);
+    }
 
-  //   console.log("danhSachBinhLuan:", danhSachBinhLuan);
-
-  useEffect(() => {
-    dispatch(getCongViecChiTietAction(jobId));
-    dispatch(getBinhLuanTheoMaCongViecAction(jobId));
-  }, []);
+    values.maCongViec = jobId;
+    values.maNguoiBinhLuan = userId;
+    values.ngayBinhLuan = moment().format("DD/MM/YYYY");
+    values.saoBinhLuan = 5;
+    console.log(values);
+    if (dispatch(postBinhLuanAction(values))) form.resetFields();
+  };
 
   return (
     <section id="jobDetail" className="mt-4">
@@ -330,67 +344,95 @@ function JobDetail(props) {
                 </p>
                 <div className="dropdown-divider mt-4"></div>
 
-                <div className="mt-4">
-                  <div className="d-flex">
-                    <div className="comment__seller-avatar">
-                      <img
-                        width={28}
-                        height={28}
-                        src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/307505025_1357717081301751_5489596097578224531_n.jpg?stp=dst-jpg_p100x100&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=XVuVQyyRNMAAX_aCPZZ&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fsgn5-9.fna&oh=00_AT-ZgDtqW_bk4zQu9MB14ToFswNxy6p9UOrVV1EKTUB4RQ&oe=63458272"
-                        alt=""
-                        className="rounded-circle"
-                      />
-                    </div>
-                    <div className="comment__seller-content ml-2">
-                      <p className="m-0 font-weight-bold">
-                        Nguyen Tuan Anh <i className="ml-1 fa fa-star text-warning"></i>
-                        <span className="ml-1 text-warning">5</span>
-                      </p>
-                      <div className="d-flex mt-1 align-items-center">
-                        <img
-                          width={23}
-                          height={15}
-                          src="https://investone-law.com/wp-content/uploads/2019/06/quoc-ky-viet-nam.jpg"
-                          alt=""
-                        />
-                        <span className="ml-1 text-secondary">Viet Nam</span>
-                      </div>
-                      <p className="m-0">
-                        @hungdev1108 did a great job. I forgot to add a few things and he had no problem fixing what I
-                        forgot and making sure I was happy with the end product.
-                      </p>
-                      <div className="mt-1">
-                        <span className="text-secondary">Published 5 minutes ago</span>
-                      </div>
-                      <div className="mt-2">
-                        <div className="">
-                          <span>
-                            <i className="far fa-thumbs-up mr-1"></i>Helpful
-                          </span>
-                          <span className="ml-3">
-                            <i className="far fa-thumbs-down mr-1"></i>Not Helpful
-                          </span>
+                {danhSachBinhLuan?.map((binhLuan, index) => {
+                  return (
+                    <div className="mt-4" key={index}>
+                      <div className="d-flex">
+                        <div className="comment__seller-avatar">
+                          <img width={28} height={28} src={binhLuan.avatar} alt="" className="rounded-circle" />
+                        </div>
+                        <div className="comment__seller-content ml-2">
+                          <p className="m-0 font-weight-bold">
+                            {binhLuan.tenNguoiBinhLuan}
+                            {binhLuan.saoBinhLuan === 1 ? (
+                              <i className="fa fa-star text-warning ml-2"></i>
+                            ) : binhLuan.saoBinhLuan === 2 ? (
+                              <Fragment>
+                                <i className="fa fa-star text-warning ml-2"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                              </Fragment>
+                            ) : binhLuan.saoBinhLuan === 3 ? (
+                              <Fragment>
+                                <i className="fa fa-star text-warning ml-2"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                              </Fragment>
+                            ) : binhLuan.saoBinhLuan === 4 ? (
+                              <Fragment>
+                                <i className="fa fa-star text-warning ml-2"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                              </Fragment>
+                            ) : binhLuan.saoBinhLuan === 5 ? (
+                              <Fragment>
+                                <i className="fa fa-star text-warning ml-2"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                                <i className="fa fa-star text-warning ml-1"></i>
+                              </Fragment>
+                            ) : binhLuan.saoBinhLuan === 0 ? (
+                              <i className="ml-2">No star</i>
+                            ) : (
+                              ""
+                            )}
+
+                            <span className="ml-1 text-warning">{binhLuan.saoBinhLuan}</span>
+                          </p>
+                          <div className="d-flex mt-1 align-items-center">
+                            <img
+                              width={23}
+                              height={15}
+                              src="https://investone-law.com/wp-content/uploads/2019/06/quoc-ky-viet-nam.jpg"
+                              alt=""
+                            />
+                            <span className="ml-1 text-secondary">Viet Nam</span>
+                          </div>
+                          <p className="m-0">{binhLuan.noiDung}</p>
+                          <div className="mt-1">
+                            <span className="text-secondary">Published {binhLuan.ngayBinhLuan}</span>
+                          </div>
+                          <div className="mt-2">
+                            <div className="">
+                              <span>
+                                <i className="far fa-thumbs-up mr-1"></i>Helpful
+                              </span>
+                              <span className="ml-3">
+                                <i className="far fa-thumbs-down mr-1"></i>Not Helpful
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  );
+                })}
+
                 <div className="mt-4">
                   <div className="d-flex">
                     <div className="comment__seller-avatar">
-                      <img
-                        width={28}
-                        height={28}
-                        src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/307505025_1357717081301751_5489596097578224531_n.jpg?stp=dst-jpg_p100x100&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=XVuVQyyRNMAAX_aCPZZ&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fsgn5-9.fna&oh=00_AT-ZgDtqW_bk4zQu9MB14ToFswNxy6p9UOrVV1EKTUB4RQ&oe=63458272"
-                        alt=""
-                        className="rounded-circle"
-                      />
+                      <img width={28} height={28} src={userSignin?.avatar} alt="" className="rounded-circle" />
                     </div>
                     <div className="comment__seller-content ml-2" style={{ flex: "auto" }}>
-                      <FloatingLabel controlId="floatingTextarea" className="">
-                        <Form.Control as="textarea" placeholder="Leave a comment here..." />
-                      </FloatingLabel>
-                      <button className="btn btn-primary mb-5">Add Comment</button>
+                      <Form form={form} onFinish={onFinish}>
+                        <Form.Item name="noiDung" className="">
+                          <Input.TextArea placeholder="Leave a comment here..." />
+                        </Form.Item>
+                        <button className="btn btn-primary mb-5" type="submit">
+                          Add Comment
+                        </button>
+                      </Form>
                     </div>
                   </div>
                 </div>

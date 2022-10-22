@@ -47,7 +47,7 @@ function Header(props) {
           </span>
           id="dropdown-account"
         >
-          {userSignin.user?.role === "ADMIN" ? (
+          {/* {userSignin.user?.role === "ADMIN" ? (
             <NavDropdown.Item
               className="text-secondary"
               onClick={() => {
@@ -58,9 +58,9 @@ function Header(props) {
             </NavDropdown.Item>
           ) : (
             <NavDropdown.Item style={{ opacity: 0.5 }} disabled="disabled" className="text-black-50">
-              Admin
+              User
             </NavDropdown.Item>
-          )}
+          )} */}
 
           <NavDropdown.Item
             className="text-secondary"

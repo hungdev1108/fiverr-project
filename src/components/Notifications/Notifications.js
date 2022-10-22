@@ -40,7 +40,7 @@ export const signInError = (noti) => {
 export const ConfirmSignOut = (history) => {
   confirm({
     title: "Notification!",
-    content: "Want to sign out of your account??",
+    content: "Want to sign out of your account?",
     onOk() {
       localStorage.removeItem(USER_LOGIN);
       localStorage.removeItem(TOKEN);
@@ -53,10 +53,10 @@ export const ConfirmSignOut = (history) => {
 
 export const ConfirmDeleteHiredJob = (id, dispatch) => {
   confirm({
-    title: "THÔNG BÁO!",
-    content: "BẠN CÓ MUỐN XOÁ CÔNG VIỆC ĐÃ THUÊ?",
+    title: "Notification!",
+    content: "Do you want to delete the hired job?",
     onOk() {
-      dispatch(deleteHireJobAction(id))
+      dispatch(deleteHireJobAction(id));
     },
     onCancel() {},
   });
@@ -64,10 +64,9 @@ export const ConfirmDeleteHiredJob = (id, dispatch) => {
 
 export const deleteHiredJobSuccess = () => {
   Modal.success({
-    title: "XOÁ CÔNG VIỆC THÀNH CÔNG!",
-    content: "xOÁ CÔNG VIỆC THÀNH CÔNG!",
-    onOk() {
-    },
+    title: "Notification!",
+    content: "Delete job successfully!",
+    onOk() {},
   });
 };
 
@@ -78,5 +77,16 @@ export const BookingJobSuccess = () => {
     onOk() {
       window.location.reload();
     },
+  });
+};
+
+export const confirmComment = (history) => {
+  confirm({
+    title: "Notification!",
+    content: "Please sign in to use this feature!",
+    onOk() {
+      history.push("/signin");
+    },
+    onCancel() {},
   });
 };
