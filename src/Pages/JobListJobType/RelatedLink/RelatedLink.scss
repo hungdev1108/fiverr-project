@@ -1,0 +1,39 @@
+@import "../../../assets/scss/App.scss";
+.RelatedLink {
+  padding: 32px 0;
+  text-align: center;
+  .title {
+    font-size: 24px;
+    color: #404145;
+    font-weight: 700;
+  }
+  ul {
+    margin-top: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    li {
+      background: #efeff0;
+      border-color: #efeff0;
+      margin: 0 6px 16px;
+      padding: 3px 12px;
+      font-size: 14px;
+      line-height: 160%;
+      font-weight: 600;
+      color: #74767e;
+      border-radius: 999px;
+      &:hover {
+        span {
+          cursor: pointer;
+          transition: all 0.2s;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  // New responsive
+  @include mobile-xs {
+    padding: 1.5rem !important;
+  }
+}

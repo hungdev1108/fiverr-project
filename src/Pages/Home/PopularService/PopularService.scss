@@ -1,0 +1,41 @@
+.PopularService {
+  margin-top: 96px;
+  max-width: 90%;
+  .title {
+    padding-bottom: 24px;
+  }
+
+  .slider-package {
+    padding: 0;
+    .item {
+      position: relative;
+      height: 345px;
+      outline: none;
+      width: 288px;
+      padding: 0 18px;
+      h4 {
+        position: absolute;
+        z-index: 1;
+        color: #fff;
+        padding: 16px;
+        small {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 400;
+          display: block;
+        }
+      }
+      img {
+        width: 100%;
+        border-radius: 4px;
+      }
+      &:hover {
+        img {
+          transition: opacity 0.3s ease-in-out;
+          opacity: 0.85;
+        }
+        cursor: pointer;
+      }
+    }
+  }
+}

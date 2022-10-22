@@ -1,0 +1,71 @@
+@import "../../../assets/scss/App.scss";
+.Popular {
+  margin-top: 48px;
+  .title {
+    font-size: 24px;
+    line-height: 130%;
+    color: #404145;
+    font-weight: 700;
+  }
+  .slide-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    .slide {
+      min-width: fit-content;
+      padding: 0 8px;
+      .item {
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        color: #404145;
+        border: 1px solid #efeff0;
+        padding: 12px;
+        box-shadow: 0 0.14px 2.29266px rgb(0 0 0 / 3%), 0 0.37px 4.42626px rgb(0 0 0 / 5%), 0 3px 7px rgb(0 0 0 / 9%);
+        img {
+          width: 48px;
+          height: 48px;
+          margin-right: 12px;
+        }
+        span.tbody-5 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 24px;
+          margin-right: 12px;
+        }
+        svg {
+          width: 100%;
+          fill: #74767e;
+          background: none;
+          border: none;
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+          vertical-align: baseline;
+        }
+        &:hover {
+          color: #1dbf73;
+          cursor: pointer;
+          transition: all 0.2s;
+          svg {
+            fill: #1dbf73;
+          }
+        }
+      }
+      // New responsive
+      @include mobile-xs {
+        width: 100% !important;
+      }
+    }
+    // New responsive
+    @include mobile-xs {
+      justify-content: flex-start !important;
+    }
+  }
+}

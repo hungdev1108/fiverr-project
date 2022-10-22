@@ -1,0 +1,31 @@
+.Marketplace {
+  margin-bottom: 96px;
+  h2 {
+    font-size: 32px;
+    line-height: 120%;
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  li {
+    width: 20%;
+    padding-bottom: 55px;
+    padding: 0 10px 32px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    .item {
+      color: #222325;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      img {
+        display: block;
+        width: 48px px;
+        height: 48px;
+        margin: 0 auto 15px;
+      }
+    }
+  }
+}
