@@ -16,8 +16,10 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
 
   const onFinish = (values) => {
     setshowModal(false);
+    values = {...values}
     values.email = userInfo?.email;
     values.gender = userInfo?.gender;
+    values.role = userInfo?.role;
     values.birthday = moment(values.birthday).format("MM/DD/YYYY");
     dispatch(putUserInfoAction(userID, values));
   };
@@ -34,7 +36,9 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           phone: userInfo?.phone,
           skill: userInfo?.skill,
           certification: userInfo?.certification,
-          birthday: moment(userInfo?.birthday),
+          birthday: moment(userInfo?.birthday)._isValid
+            ? moment(userInfo?.birthday)
+            : "",
         }}
         scrollToFirstError
         size="large"
@@ -78,11 +82,14 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           name="birthday"
           rules={[{ required: true, message: "Please select your birthday!" }]}
         >
-          <DatePicker format={'MM/DD/YYYY'} onChange={(date)=>console.log(date)} />
+          <DatePicker
+            format={"DD/MM/YYYY"}
+            onChange={(date) => console.log("datePicker", date)}
+          />
         </Form.Item>
 
         <Form.Item name="skill" label="Skill">
-          <Select mode="multiple" placeholder="select your skills">
+          <Select mode="tags" placeholder="select your skills">
             {userInfo?.skill.map((item, index) => {
               return (
                 <Option key={index} value={item}>
@@ -93,7 +100,7 @@ export default function UpdateInfoUser({ userID, userInfo, setshowModal }) {
           </Select>
         </Form.Item>
         <Form.Item name="certification" label="Certification">
-          <Select mode="multiple" placeholder="select your certification">
+          <Select mode="tags" placeholder="select your certification">
             {userInfo?.certification.map((item, index) => {
               return (
                 <Option key={index} value={item}>

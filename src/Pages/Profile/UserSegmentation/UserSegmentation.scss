@@ -1,8 +1,15 @@
+@import "../../../assets/scss/App.scss";
 .UserSegmentation {
   article {
     border: 1px solid #dddd;
     padding: 30px;
     background-color: #fff;
+    @include mobile-sm {
+      padding: 20px;
+    }
+    @include mobile-xs {
+      padding: 10px;
+    }
     .box {
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
@@ -31,7 +38,7 @@
           margin-top: 10px;
           span {
             color: #b2b2b2;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
           }
         }

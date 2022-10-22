@@ -1,3 +1,4 @@
+@import "../../../assets/scss/App.scss";
 .SellerGigs {
   .status-filter-bar {
     background-color: #fff;
@@ -33,19 +34,35 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @include mobile-sm{
+      flex-direction: column;
+      align-items: center;
+      .ant-card-body{
+        padding: 10px;
+      }
+    }
     .job-card {
       margin-bottom: 20px;
       width: 48%;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid #ddd;
+      @include mobile-sm{
+        width: 90%;
+        border-radius: 5px;
+      }
       .content {
-        font-size: 14px;
         .image-job-card {
           margin-right: 12px;
+          width: 80%;
           img {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 10px;
+          }
+        }
+        @include mobile-sm {
+          p {
+            margin-bottom: 0;
           }
         }
       }
@@ -58,6 +75,12 @@
         font-size: 10px;
         border-radius: 5px;
         background-color: hsl(356deg 80% 65%);
+        @include mobile-sm {
+          padding: 2px 7px;
+          right: -7px;
+          top: -2px;
+          border-radius: 2px;
+        }
         &:hover {
           background-color: #ddd;
           transition: 0.2s;

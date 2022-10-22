@@ -51,13 +51,17 @@ export default function SellerCard(props) {
           <Modal.Title>Update infomation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UpdateInfoUser userID={userID} userInfo={userInfo} setshowModal={setshowModal} />
+          <UpdateInfoUser
+            userID={userID}
+            userInfo={userInfo}
+            setshowModal={setshowModal}
+          />
         </Modal.Body>
       </Modal>
       <main className="main">
         <div className="status">
           <div className="user-online-indicator">
-            <i className="dot">·</i> Online
+            <i class="dot">·</i> Online
           </div>
         </div>
 
