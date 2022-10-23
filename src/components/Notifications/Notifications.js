@@ -80,6 +80,14 @@ export const BookingJobSuccess = () => {
   });
 };
 
+export const BookingCheckSignin = (history) => {
+  Modal.error({
+    title: "Notification!",
+    content: "Please sign in to use this feature!",
+    onOk() {},
+  });
+};
+
 export const confirmComment = (history) => {
   confirm({
     title: "Notification!",

@@ -1,5 +1,5 @@
 import { Input, Tabs, Form } from "antd";
-import { confirmComment } from "components/Notifications/Notifications";
+import { BookingCheckSignin, confirmComment } from "components/Notifications/Notifications";
 import moment from "moment/moment";
 import { Fragment, useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
@@ -8,7 +8,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import { getBinhLuanTheoMaCongViecAction, postBinhLuanAction } from "store/actions/ManagerCommentAction";
 import { getCongViecChiTietAction } from "store/actions/ManagerJobAction";
 import { bookingJobAction } from "store/actions/UserManagerAction";
-import { USER_LOGIN } from "utils/settings/config";
+import { TOKEN, USER_LOGIN } from "utils/settings/config";
 import { InfoBooking } from "_core/models/InfoBooking";
 import "./JobDetail.scss";
 
@@ -467,7 +467,16 @@ function JobDetail(props) {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">
+                    <button
+                      onClick={() => {
+                        if (!localStorage.getItem(TOKEN)) {
+                          BookingCheckSignin();
+                        } else {
+                          handleHireJob();
+                        }
+                      }}
+                      className="btn-lg btn btn-success btn-block my-4"
+                    >
                       Continue (${(congViecChiTiet[0]?.congViec.giaTien * 50) / 100})
                     </button>
                     <div role="button" className="h5 text-success text-center">
@@ -504,7 +513,11 @@ function JobDetail(props) {
                     </ul>
                     <button
                       onClick={() => {
-                        handleHireJob();
+                        if (!localStorage.getItem(TOKEN)) {
+                          BookingCheckSignin();
+                        } else {
+                          handleHireJob();
+                        }
                       }}
                       className="btn-lg btn btn-success btn-block my-4"
                     >
@@ -542,7 +555,16 @@ function JobDetail(props) {
                         <i className="fas fa-check mr-2"></i>Include source code
                       </li>
                     </ul>
-                    <button className="btn-lg btn btn-success btn-block my-4">
+                    <button
+                      onClick={() => {
+                        if (!localStorage.getItem(TOKEN)) {
+                          BookingCheckSignin();
+                        } else {
+                          handleHireJob();
+                        }
+                      }}
+                      className="btn-lg btn btn-success btn-block my-4"
+                    >
                       Continue (${congViecChiTiet[0]?.congViec.giaTien * 2})
                     </button>
                     <div role="button" className="h5 text-success text-center">
